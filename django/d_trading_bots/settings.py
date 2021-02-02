@@ -140,16 +140,30 @@ DEFAULT_FROM_EMAIL = 'saastoolss@gmail.com'
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'trading_bots',
-        'USER':  'postgres',
-        'PASSWORD': 'abc123321@123',
-        'HOST': '104.248.153.106',
-        'PORT': '5432',
+if DEBUG:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'trading_bots',
+            'USER':  'postgres',
+            'PASSWORD': 'abc123321@123',
+            'HOST': '104.248.153.106',
+            'PORT': '5432',
+        }
+    }
+    
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'trading_bots',
+            'USER': 'postgres',
+            'PASSWORD': 'abc123321@123',
+            'HOST': 'localhost',
+            'PORT': '',
     }
 }
+    
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
