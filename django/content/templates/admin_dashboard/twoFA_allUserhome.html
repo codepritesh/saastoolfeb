@@ -1,0 +1,78 @@
+{% extends 'admin_dashboard/user_basepage.html' %}
+
+
+
+{%  if request.user.is_superuser %}
+{% block contentContainer %}
+<!-- this will block the usertable-->
+{% block user_bot_data %}  {% endblock %}
+<!-- this will block the usertable-->
+
+{% block content %}
+
+<section id="content">
+    <div class="card">
+        <div class="card-header">
+All user running bot instances
+</div>
+<div class="card-body no-border">
+<div class="table-responsive">
+<table class="table table-bordered">
+    <thead class="boarder-bottom font-weight-bold">
+        <tr>
+             
+           <th>User Name</th>
+            <th>TwoFA Status</th>
+            <th>TwoFA Disabale</th>
+
+            
+        </tr>
+    </thead>
+    <tbody>
+                    {% for u in user_list %}
+                    <tr>
+
+
+                       
+                               
+                                
+                                <td> {{u.user_name}}</td> 
+                                <td>{{u.two_fa_activated}}</td>
+
+                                 
+                                         <td>
+
+                                        <form action="{%url 'admin_want_to_disable2FA' u.user_name.id %}" method="post" class="d-inline" onsubmit="return confirm('{{u.user_name}}\nDo you really want to disable 2FA for this user ?');">
+                                        {% csrf_token %}
+                                        <button type="submit" class = "btn">
+                                                <i class="far fa-trash-alt fa-lg text-danger float-right"></i>
+                                        </button>
+                                        
+                                        </form>
+                                         </td>
+                                
+                               
+                                
+                                                    
+                    </tr>
+                    {% endfor %}
+    
+    
+   </tbody>
+
+
+
+</table>
+</div>
+</div>
+</div>
+</section>
+{% endblock content %}
+{% endblock %}
+{% endif %}
+
+
+
+
+
+                      

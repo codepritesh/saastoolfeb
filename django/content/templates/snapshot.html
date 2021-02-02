@@ -1,0 +1,18 @@
+{% extends "adminLTE.html" %}
+{% block contentContainer %}
+    <section id="content">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                {% block content_header %}{% endblock %}
+            </tr>
+            </thead>
+            <tbody id="table-instance-running">
+            {% block content_body %}
+            {% endblock %}
+            </tbody>
+        </table>
+    </section>
+{% endblock %}
+{% block jsFile %}
+{% endblock %}

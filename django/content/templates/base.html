@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% load static %}
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="{%  static 'favicon.ico' %}">
+    {% block head %}
+        <title>{% block title %}{% endblock %}Trading Tools</title>
+    {% endblock %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script
+            src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+    <script>
+    var port = location.port;
+    if (!port) {
+        port = '80'
+    }
+    </script>
+    <script type="text/javascript" src="{% static 'js/uuid_v1.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    {% block rec_data %} {% endblock %}
+    <script type="text/javascript" src="{% static 'js/common/index.js' %}"></script>
+    {% block h_common %}
+    {% endblock %}
+  </head>
+  <body>
+    <section id="content">
+        <section>
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <div class="navbar-collapse">
+                    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">Home</a>
+                        </li>
+                        {% block botUrl %}
+
+                        {% endblock %}
+                    </ul>
+                </div>
+            </nav>
+        </section>
+        <section class="form">
+            <div class="card">
+                <div class="card-header">Input</div>
+                <div class="card-body">
+                    <div class="form-padding-left">
+                        {% block v_input %} {% endblock %}
+                    </div>
+		    {% block another_btn %} {% endblock %}
+                    <div class="row justify-content-around">
+                    {% block v_action %}
+		        {% if not data %}
+                            <button id="btn-start-bot" type="button" class="btn btn-primary col-md-2">Start Bot
+                            </button>
+			{% endif %}
+                        {%  if resume %}
+                            <button id="btn-resume-bot" type="button" class="btn btn-primary col-md-2">Resume Bot
+                            </button>
+                        {%  endif %}
+                        {%  if not resume %}
+                      <button id="btn-show-stop-bot" type="button" class="btn btn-danger col-md-2">Kill Bot
+                      </button>
+                        {% endif %}
+                    {% endblock %}
+                    </div>
+                </div>
+            </div>
+        </section>
+	{% block another_block %} {% endblock %}
+        <section id="eror-area">
+        <div class="card">
+            <div class="card-header text-bold alert-danger">
+                Warning
+            </div>
+            <div class="card-body">
+                <span id="error-lable" class="text-danger">&nbsp;</span>
+            </div>
+        </div>
+            <section class="table-pln">
+            <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">START</th>
+                      <th scope="col">CURRENT</th>
+                      <th scope="col">IN ORDER</th>
+                      <th scope="col">STOP</th>
+                      <th scope="col">PNL</th>
+                      <th scope="col">PROFIT</th>
+                      <th scope="col">#</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr id="base-currency">
+                      <th scope="row">Base Currency</th>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>% TOTAL PROFIT</td>
+                      <td>0.0</td>
+                    </tr>
+                    <tr id="quote-currency">
+                      <th scope="row">Quote Currency</th>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>STOP PRICE</td>
+                      <td>0.0</td>
+                    </tr>
+                    <tr id="coin-fee">
+                      <th scope="row">Coin Fee</th>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>FEE PRICE</td>
+                      <td>0.0</td>
+                    </tr>
+                  </tbody>
+                </table>
+        </section>
+    </section>
+        {% block content %}{% endblock %}
+    </section>
+      <section id="area_loading">
+        {% block area_loading %}
+        {% endblock %}
+    </section>
+      <section id="area_modal">
+      {% include "components/modal_stop_bot_success_component.html" %}
+      {% include "components/modal_confirm_kill_bot.html" %}
+    </section>
+
+  </body>
+
+</html>

@@ -1,0 +1,25 @@
+{% extends "chart_base.html" %}
+{% block title %}{{ title }}{% endblock %}
+{% block botUrl %}
+    <li class="nav-item">
+        <a class="nav-link" href="/{{ bot_url }}">{{ bot_name }}</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/{{ bot_url }}/tracking">Tracking</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/{{ bot_url }}/snapshot">SnapShot</a>
+    </li>
+    <li class="nav-item active">
+        <a class="nav-link" href="/{{ bot_url }}/chart">Chart</a>
+    </li>
+{% endblock %}
+{% block chart %}
+    {% load static %}
+    <div id="chartContainer" style="height: 500px; width: 100%;"></div>
+    {%  include "components/order_history_component.html" %}
+{% endblock %}
+{% block jsFile %}
+    <script type="text/javascript" src="{% static 'js/canvas.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/chart_base.js' %}"></script>
+{% endblock %}

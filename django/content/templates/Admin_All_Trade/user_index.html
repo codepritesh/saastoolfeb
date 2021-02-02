@@ -1,0 +1,165 @@
+{% extends 'adminLTE.html' %}
+{%  if request.user.is_superuser %}
+{% block mycss %} 
+<style> 
+	.id {
+  display: none;
+}
+
+
+</style> 
+{% endblock %}
+{% block contentContainer %}
+
+
+<!-- this will block the usertable-->
+{% block user_bot_data %}  {% endblock %}
+<!-- this will block the usertable-->
+
+
+{% block content %}
+<div class='container-fluid'> 
+ <section id="content">
+	<div class="card">
+		<div class="card-header">
+Search All Bot
+{% block found_data_messages %}
+{% if found_data %}
+<h4><div  style="color:green; display:inline-block;">{{found_data}}</div>data found</h4>
+{% endif %}
+{% endblock %}
+
+</div>
+
+
+
+
+<form action="" method="post" autocomplete="off">
+	{% csrf_token %}
+<div class="row col-md-12">
+	<div class="col-md-3">
+	<div class="form-group">
+	 <label for="username_label">UserName:</label>
+	  <select id="username_label" name="user_name" class="form-control">
+		
+		
+
+	  {% for key, values in User_Name.items %}
+	   
+		<option value="{{values}}">{{values}}</option>
+	  {% endfor %}
+	  </select>
+	  </div>
+	</div>
+	<div class="col-md-3">
+	<label for="bot_name">Bot:</label>
+	  <select id="bot_name" name="bot_name" class="form-control">
+		<option value="{{input_bot_name}}">{{input_bot_name}}</option>
+
+    <option value="ClearOrderBot">cancel and avg tool</option>
+    <option value="SupportBigAmountBot">Big Amount Bot</option>
+    <option value="SupportTrailingStopBot">Trailing stop bot</option>
+    <option value="Arb2WayBot">Arb Two way Bot</option>
+    <option value="AtrTrailingStopTool">AtrTrailing stop bot</option>
+    <option value="TwoWaySpBot">Two way sp bot</option>
+    <option value="SupportMultiBoxBot">Multi box bot</option>
+    <option value="BSSBContinuouslyTool">bssb continius tool</option>
+    <option value="all_bot">All Bot</option>
+
+	  </select>
+	 </div> 
+	<div class="col-md-2">
+	 <label for="fortrade_start">Start</label>
+	  <input type="date" id="trade_startid" name="trade_start" class="form-control" value="{{input_trade_start}}">
+	</div>
+	<div class="col-md-2">
+	  <label for="fortrade_end">End</label>
+	  <input type="date" id="trade_endid" name="trade_end" class="form-control" value="{{input_trade_end}}">
+	</div>
+	<div class="col-md-2">
+		<br/><button type="submit" class="btn btn-primary" style="margin-top:8px;">Search Data</button>
+	</div>
+</div>
+</form>
+
+
+
+<div class="card-body no-border">
+ <table class="table table-bordered">
+								  <thead>
+									<tr>
+										<th class= "id">ID</th>
+										<th>API_Name</th>
+										<th>Exchange_Id</th>
+										<th>Own_Name</th>
+										<th>Bot_Name</th>
+										<th>UUID</th>
+										<th>Date</th>
+										<th>Order ID</th>
+										<th>Status</th>
+										<th>Pair</th>
+										<th>Order Type</th>
+										<th>Side</th>
+										<th>Amount</th>
+										<th>Price</th>
+									</tr>
+								  </thead>
+								  <tbody>
+								  	
+									 {% for list_item in recived_data %}
+									  <tr>
+							
+									     {% for key, values in list_item.items %} 
+   
+                                     	 <td class="{{key}}">{{values}}</td>
+                                     	  {% endfor %}
+                                           
+   
+   	                                
+								  	    
+									  
+									
+   	                                        
+   	                                     </tr>
+                                     {% endfor %}
+
+									
+									
+									
+								  </tbody>
+								</table>
+								</div>
+</div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+</div> 
+
+
+
+
+
+								
+							
+{% endblock content %}
+
+
+
+
+
+
+
+{% endblock %}
+{% endif %}
+
+

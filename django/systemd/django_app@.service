@@ -1,0 +1,12 @@
+[Unit]
+Description=TradingBot - Django web service on port %I
+After=network.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/local/bin/django_systemd_helper start %i.conf
+ExecStop=/usr/local/bin/django_systemd_helper stop %i.conf
+
+[Install]
+WantedBy=multi-user.target

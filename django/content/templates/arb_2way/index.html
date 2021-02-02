@@ -1,0 +1,102 @@
+{% extends "adminLTE.html" %}
+{% block title %}Arb 2way Tool{% endblock %}
+{% block head %}
+    {{ block.super }}
+{% endblock %}
+{% block h_common %}
+    {% load static %}
+    <script type="text/javascript" src="{% static 'js/arb_2way/index.js' %}"></script>
+{% endblock %}
+{% block botUrl %}
+    <li class="nav-item active">
+        <a class="nav-link" href="/arb-2way-tool">Arb 2way Tool</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/arb-2way-tool/tracking">Tracking</a>
+    </li>
+    {% comment %}
+    <li class="nav-item">
+        <a class="nav-link" href="/arb-2way-tool/snapshot">SnapShot</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/arb-2way-tool/chart">Chart</a>
+    </li>
+    {% endcomment %}
+{% endblock %}
+{% block v_input %}
+<h4>Arb Two Way Tool</h4>
+<a  href="/arb-2way-tool/HowToUseArbTwoWayTool" target="_blank"><p class="text-right" style="color:#ffc107;">How To Use?</p></a>
+    <div class="form-row value-row">
+        {% include "components/ex_change_component.html" with id_ele='ex_id1' n_col=2 label='Exchange1' value=data.ex_id1 %}
+        {% include "components/apis_dropdown_component.html" with n_col=2 label='Account1' id='api_name1' apis=api1 %}
+    </div>
+    <div class="form-row value-row">
+        {% include "components/ex_change_component.html" with id_ele='ex_id2' n_col=2 label='Exchange2' value=data.ex_id2 %}
+        {% include "components/apis_dropdown_component.html" with n_col=2 label='Account2' id='api_name2' apis=api2 %}
+    </div>
+    <div class="form-row value-row">
+        <div class="form-group col-md-2">
+            <label for="exchange_profit" class="text-bold">Profit On-Exchange</label>
+            <select class="custom-select exchange" id="exchange_profit">
+                <option value='ex_1'>Exchange 1 - Account 1</option>
+                <option value='ex_2'>Exchange 2 - Account 2</option>
+            </select>
+        </div>
+        {% include "components/form_input_component.html" with n_col=2 label='Pair' id='pair' v_def='BTC/USDT' value=data.pair %}
+        {% include "components/form_input_component.html" with n_col=2 label='Amount' id='amount' v_def='0.1' value=data.amount %}
+        {% include "components/form_input_component.html" with n_col=2 label='Min Profit' id='min_profit' v_def='0' value=data.min_profit %}
+        {% include "components/form_input_component.html" with n_col=2 label='Profit' id='profit' v_def='0.3' value=data.profit %}
+        {% include "components/form_input_component.html" with n_col=2 label='Price' id='price' v_def='0' value=data.price %}
+        {% include "components/swith_btn_component.html" with n_col=2 id='postOnly' value=data.postOnly dataOn='ON' dataOff='OFF' label='PostOnly' %}
+        {% include "components/form_input_component.html" with n_col=2 label='Gap' id_container='gap_container' id='gap' v_def='0.01' value=data.gap %}
+        {% include "components/form_input_component.html" with n_col=2 label='Follow Gap' id_container='follow_gap_container' id='follow_gap' v_def='0' value=data.follow_gap %}
+{#      {% include "components/form_input_component.html" with n_col=2 label='Fees' id='fees' v_def='0.3' value=data.fees %}#}
+        {% include "components/swith_btn_component.html" with n_col=2 id='follow_market' value=data.follow_market dataOn='Follow' dataOff='Not Follow' label='Follow Market' %}
+        {% include "components/swith_btn_component.html" with n_col=2 id='is_parallel' value=data.follow_market dataOn='Parallel' dataOff='Serial' label='Serial/Parallel' %}
+    </div>
+{% endblock %}
+{% block another_btn %}
+    <section class="card" style="margin-bottom: 20px">
+        <div class="card-header">
+            ACTION
+        </div>
+        <div class="card-body">
+            <div class="row justify-content-center">
+                <button id="btn-place-buy" type="button" class="btn bg-success col-md-2" style="margin-right: 20px">
+                    Place Buy
+                </button>
+                <button id="btn-place-sell" type="button" class="btn bg-danger col-md-2">Place Sell
+                </button>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+{% block v_action %}
+    {% if not data %}
+    {% if bot_four < max_bot_four %}
+
+    <button id="btn-start-bot" type="button" class="btn btn-primary col-md-2">
+        Start Bot
+    </button>
+    {% else %}
+         <button id="max_bot_running" type="button" class="btn btn-primary col-md-2" title="you have maximum bot running to increase your bot instance contact to admin.">
+        Start Bot
+    </button>
+    <h6>you have maximum bot running pls contact to admin to increase bot instance</h6>
+    {% endif %}
+{% endif %}
+{% if resume %}
+    <button id="btn-resume-bot" type="button" class="btn btn-primary col-md-2">
+        Resume Bot
+    </button>
+{% endif %}
+<button id="btn-show-stop-bot" type="button" class="btn btn-danger col-md-2">
+        Kill Bot
+</button>
+
+
+
+{% endblock %}
+{% block content %}
+    {% include "components/log_and_trade_info_component.html" %}
+{% endblock %}

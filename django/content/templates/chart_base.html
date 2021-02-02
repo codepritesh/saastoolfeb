@@ -1,0 +1,26 @@
+{% extends "adminLTE.html" %}
+{% block h_common %}
+    <script>
+        var dataPoints = "{{ dataPoints|escapejs}}"
+        var uuid = "{{ uuid|escapejs}}"
+        var pair = "{{ pair|escapejs}}"
+        var start_time = "{{ start_time|escapejs}}"
+        var end_time = "{{ end_time|escapejs}}"
+    </script>
+{% endblock %}
+{% block contentContainer %}
+    <section id="content">
+        {% block chart %} {% endblock %}
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                {% block content_header %}{% endblock %}
+            </tr>
+            </thead>
+            <tbody id="table-instance-running">
+            {% block content_body %}
+            {% endblock %}
+            </tbody>
+        </table>
+    </section>
+{% endblock %}

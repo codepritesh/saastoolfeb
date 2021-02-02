@@ -1,0 +1,1 @@
+{"ClearOrderBot": [{"uuid": "5c7c5b60-614a-11eb-9057-f9edb8b2236c", "time": "2021-01-28T16-22-41+0700", "own_name": "admin", "pair": "BTC/USDT", "ex_id": "BIN", "api_name": "rohitnewapi", "bot_alias": "ClearOrderBot"}]}

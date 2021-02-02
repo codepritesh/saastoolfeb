@@ -1,0 +1,97 @@
+{% extends "adminLTE.html" %}
+{% block title %}Two Way Sp Bot{% endblock %}
+{% block head %}
+  {{ block.super }}
+{% endblock %}
+{% block h_common %}
+    {% load static %}
+  <script type="text/javascript" src="{% static 'js/two_way_sp/index.js' %}"></script>
+{% endblock %}
+{% block botUrl %}
+<li class="nav-item active">
+  <a class="nav-link" href="/two_way_sp_tool">Two Way Sp Bot</a>
+</li>
+    <li class="nav-item">
+        <a class="nav-link" href="/two_way_sp_tool/tracking">Tracking</a>
+    </li>
+    {% comment %}
+    <li class="nav-item">
+        <a class="nav-link" href="/two_way_sp_tool/snapshot">SnapShot</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/two_way_sp_tool/chart">Chart</a>
+    </li>
+    {% endcomment %}
+{% endblock %}
+{% block v_input %}
+<h4>Two Way Sp Bot </h4>
+<a  href="/two_way_sp_tool/TwoWaySpBot" target="_blank"><p class="text-right" style="color:#ffc107;">How To Use?</p></a>
+    <div class="form-row value-row">
+        {% include "components/ex_change_component.html" with n_col=2 label='Exchange' value=data.ex_id %}
+        {% include "components/apis_dropdown_component.html" with n_col=2 label='Account' id='api_name' apis=apis %}
+        {% include "components/form_input_component.html" with n_col=2 label='Pair1' id='pair1' v_def='BTC/USDT' value=data.pair1 %}
+        {% include "components/form_input_component.html" with n_col=2 label='Pair2' id='pair2' v_def='YFI/BUSD' value=data.pair2 %}
+        {% include "components/form_input_component.html" with n_col=2 label='Quote Amount' id='amount' v_def='0.1' value=data.amount %}
+    </div>
+    <div class="form-row">
+        {% include "components/form_input_component.html" with n_col=2 label='Min Base Amount Profit' id='min_profit' v_def='0' value=data.min_profit %}
+        {% include "components/swith_btn_component.html" with n_col=2 id='follow_market' value=data.follow_market dataOn='Follow' dataOff='Not Follow' label='Follow Market' %}
+        {% include "components/swith_btn_component.html" with n_col=2 id='postOnly' value=data.postOnly dataOn='ON' dataOff='OFF' label='PostOnly' %}
+        {% include "components/form_input_component.html" with n_col=2 label='Gap' id_container='gap_container' id='gap' v_def='0.01' value=data.gap %}
+        {% include "components/form_input_component.html" with n_col=2 label='Follow Gap' id_container='follow_gap_container' id='follow_gap' v_def='0' value=data.follow_gap %}
+    </div>
+    <div class="form-row">
+        <div id="choose_pair_first" class="form-group col-md-2">
+            <label for="pair_first" class="text-bold">Choose Pair</label>
+            <select class="custom-select exchange" id="pair_first">
+                <option value="0">Pair 1 First</option>
+                <option value="1">Pair 2 First</option>
+            </select>
+        </div>
+    </div>
+{% endblock %}
+{% block another_btn %}
+    <section class="card" style="margin-bottom: 20px">
+        <div class="card-header">
+            ACTION
+        </div>
+        <div class="card-body">
+            <div class="row justify-content-center">
+                <button id="btn-place-buy" type="button" class="btn bg-success col-md-2" style="margin-right: 20px">
+                    Place Buy
+                </button>
+                <button id="btn-place-sell" type="button" class="btn bg-danger col-md-2">Place Sell
+                </button>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+{% block v_action %}
+    {% if not data %}
+    {% if bot_six < max_bot_six %}
+
+    <button id="btn-start-bot" type="button" class="btn btn-primary col-md-2">
+        Start Bot
+    </button>
+    {% else %}
+         <button id="max_bot_running" type="button" class="btn btn-primary col-md-2" title="you have maximum bot running to increase your bot instance contact to admin.">
+        Start Bot
+    </button>
+    <h6>you have maximum bot running pls contact to admin to increase bot instance</h6>
+    {% endif %}
+{% endif %}
+{% if resume %}
+    <button id="btn-resume-bot" type="button" class="btn btn-primary col-md-2">
+        Resume Bot
+    </button>
+{% endif %}
+<button id="btn-show-stop-bot" type="button" class="btn btn-danger col-md-2">
+        Kill Bot
+</button>
+
+
+
+{% endblock %}
+{% block content %}
+    {% include "components/log_and_trade_info_component.html" %}
+{% endblock %}

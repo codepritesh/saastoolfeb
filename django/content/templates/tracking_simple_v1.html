@@ -1,0 +1,45 @@
+{% extends "tracking.html" %}
+{% block title %}{{ title }}{% endblock %}
+{% block botUrl %}
+    <li class="nav-item">
+        <a class="nav-link" href="/{{ bot_url }}">{{ bot_name }}</a>
+    </li>
+    <li class="nav-item active">
+        <a class="nav-link" href="/{{ bot_url }}/tracking">Tracking</a>
+    </li>
+    {% comment %}
+    <li class="nav-item">
+        <a class="nav-link" href="/{{ bot_url }}/snapshot">Snapshot</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/{{ bot_url }}/chart">Chart</a>
+    </li>
+    {% endcomment %}
+{% endblock %}
+{% block content_header %}
+
+    <thead style="color:#ff0000">
+        <tr>
+    <th scope="col">UUID</th>
+    <th scope="col">Time</th>
+    <th scope="col">Own Name</th>
+    <th scope="col">Exchange</th>
+    <th scope="col">API Name</th>
+    <th scope="col">Pair</th>
+   
+    </tr>
+    </thead>
+{% endblock %}
+{% block content_body %}
+{% load static %}
+<script>
+  var srv_id = "{{ srv_id|escapejs }}";
+  var bot_alias = "{{ bot_alias|escapejs }}";
+  var suff_ws = "{{ suff_ws|escapejs }}";
+  var bot_url = "{{ bot_url|escapejs }}";
+  var tracking_user = "{{ tracking_user|escapejs }}";
+</script>
+{% endblock %}
+{% block jsFile %}
+<script type="text/javascript" src="{% static 'js/tracking_base.js' %}"></script>
+{% endblock %}

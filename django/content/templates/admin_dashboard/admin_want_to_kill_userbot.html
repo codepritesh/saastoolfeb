@@ -1,0 +1,68 @@
+{% extends 'admin_dashboard/user_basepage.html' %}
+
+{%  if request.user.is_superuser %}
+{% block contentContainer %}
+<!-- this will block the usertable-->
+{% block user_bot_data %}  {% endblock %}
+<!-- this will block the usertable-->
+{% block content %}
+<section id="content">
+    <div class="card">
+        <div class="card-header">
+All User Bot Instances Max Permission
+</div>
+
+<div class="card-body no-border">
+<div class="table-responsive">
+<table class="table table-bordered">
+    <thead class="boarder-bottom font-weight-bold">
+        <tr>
+            <th>UUID</th>
+            <th>bot_alias</th>
+            <th>time</th>
+            <th>own_name</th>
+            <th>pair</th>
+            <th>ex_id</th>
+            <th>api_name</th>
+            
+            
+            
+        </tr>
+    </thead>
+    <tbody>
+                    {% for u in user_list %}
+                    <tr>
+                               
+                                
+                                 <td>
+                                        <a href="/{{u.bot_alias}}/{{u.uuid}}" class="btn text-primary px-0">
+                                        {{u.uuid}}</a>
+                                 </td>  
+
+                                <td>{{u.bot_alias}}</td>
+                                
+                                <td>{{u.time}}</td>
+                                <td>{{u.own_name}}</td>
+                                 <td>{{u.pair}}</td>
+                                <td>{{u.ex_id}}</td>
+                                <td>{{u.api_name}}</td>
+                                 
+                               
+                                
+                                                    
+                    </tr>
+                    {% endfor %}
+    
+    
+   </tbody>
+
+
+
+</table>
+</div>
+</div>
+</div>
+</section>
+{% endblock content %}
+{% endblock %}
+{% endif %}

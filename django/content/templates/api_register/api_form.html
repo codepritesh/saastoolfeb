@@ -1,0 +1,148 @@
+{% extends 'api_register/base_api_register.html' %}
+
+{% load crispy_forms_tags%}
+{% block content %}
+
+
+                <form action="" method="post" autocomplete="off">
+                    
+                        {% csrf_token %}
+
+                        
+                         {{form.name|as_crispy_field}}
+                          
+                         <div id="div_id_own_name" class="form-group">
+        
+            <label for="id_own_name" class="">
+                own_name
+            </label>    
+
+                      <div class="">
+                    <select name="own_name" class="select form-control" id="id_own_name">
+  
+
+ 
+
+                             <option value="{{user.id}}">{{user.get_username}}</option>
+
+  
+  
+
+                    </select>
+                    
+
+
+    
+
+
+
+
+    
+
+
+
+                </div>
+            
+        
+    </div>                   
+                         {{form.ex_id|as_crispy_field}}
+                         {{form.api_keys|as_crispy_field}}
+                         {{form.secret_keys|as_crispy_field}}
+                         {{form.passphrase|as_crispy_field}}
+                         
+                         {{form.exclude_pnl|as_crispy_field}}
+                         <div id="div_id_added_by" class="form-group">
+        
+            <label for="id_added_by" class="" style="display:none">
+                added_by
+            </label>
+        
+
+        
+
+        
+
+        
+            
+                <div class="" style="display:none">
+                    <input type="text" name="added_by" value="{{user.get_username}}" maxlength="100" class="textinput textInput form-control" id="id_added_by">
+                    
+
+
+    
+
+
+
+
+    
+
+
+
+                </div>
+            
+        
+    </div>
+                         
+                         
+                        
+                        <div class="row">
+                                <div class="col-md-8">
+                                        <button type="submit" class ="btn btn-success btn-block btn-lg"><i class="fas fa-database"></i>Submit</button>
+                                </div>
+                                <div class="col-md-4">
+                                <a href="{% url 'apikey_list' %}" class="btn btn-secondary btn-block btn-lg">
+                                <i class="fas fa-stream"></i> Back to list
+                                </a>
+                                </div>
+                        
+                        
+                        
+                        </div>
+                      
+                
+                </form>
+
+{% endblock content %}
+
+
+
+
+      
+        
+       <div id="div_id_added_by" class="form-group">
+        
+            <label for="id_added_by" class="">
+                added_by
+            </label>
+        
+
+        
+
+        
+
+        
+            
+                <div class="">
+                    <input type="text" name="added_by" value="{{user.get_username}}" maxlength="100" class="textinput textInput form-control" id="id_added_by">
+                    
+
+
+    
+
+
+
+
+    
+
+
+
+                </div>
+            
+        
+    </div>
+            
+        
+    
+            
+        
+    

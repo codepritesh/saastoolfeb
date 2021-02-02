@@ -1,0 +1,16 @@
+<div class="form-group col-md-{{n_col}}">
+    <label {% if id_ele %} for="{{ id_ele }}" {% else %} for="exchange" {% endif %} class="text-bold">{{label}}</label>
+    <select class="custom-select exchange" {% if id_ele %} id="{{ id_ele }}" {% else %} id="exchange" {% endif %} {% if value %} disabled {% endif %}>
+        <option value="BIN" {% if value %} {% if value == 'BIN' %} selected {% endif %} {% endif %}>Binance</option>
+       <!-- <option value="BIM" {% if value %} {% if value == 'BIM' %} selected {% endif %} {% endif %}>Binance Margin</option>
+        <option value="BIF" {% if value %} {% if value == 'BIF' %} selected {% endif %} {% endif %}>Binance Future USDT@</option>
+        <option value="BID" {% if value %} {% if value == 'BID' %} selected {% endif %} {% endif %}>Binance Future COIN@</option>
+        <option value="HIT" {% if value %} {% if value == 'HIT' %} selected {% endif %} {% endif %}>Hitbtc</option>
+        <option value="KRA" {% if value %} {% if value == 'KRA' %} selected {% endif %} {% endif %}>Kraken</option>
+        <option value="DAX" {% if value %} {% if value == 'DAX' %} selected {% endif %} {% endif %}>Indodax</option>
+        <option value="HUO" {% if value %} {% if value == 'HUO' %} selected {% endif %} {% endif %}>Huobi</option>
+        <option value="KEX" {% if value %} {% if value == 'KEX' %} selected {% endif %} {% endif %}>Okex3</option>
+        <option value="KUC" {% if value %} {% if value == 'KUC' %} selected {% endif %} {% endif %}>Kucoin</option>
+        <option value="MOX" {% if value %} {% if value == 'MOX' %} selected {% endif %} {% endif %}>Moonix</option> -->
+    </select>
+</div>

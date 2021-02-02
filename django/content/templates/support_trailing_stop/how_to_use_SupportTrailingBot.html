@@ -1,0 +1,84 @@
+{% extends "adminLTE.html" %}
+{% load static %}
+{% block botUrl %}
+    <li class="nav-item active">
+        <a class="nav-link" href="/support-trailing-stop-bot">Support Trailing Stop</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/support-trailing-stop-bot/tracking">Tracking</a>
+    </li>
+    {% comment %}
+    <li class="nav-item">
+        <a class="nav-link" href="/support-trailing-stop-bot/snapshot">SnapShot</a>
+    </li>
+    {% endcomment %}
+{% endblock %}
+{% block contentContainer %}
+
+
+<!-- this will block the usertable-->
+{% block user_bot_data %}  {% endblock %}
+<!-- this will block the usertable-->
+
+
+{% block content %}
+ <section id="content">
+<div class="card">
+	<div class="card-header">How To Use Support Trailing Stop</div>
+	<div class="card-body">
+		<video style="width:100%;" controls autoplay>
+									<source src="{% static 'images/STS.mp4' %}" type="video/mp4">
+								</video>
+		<div class="row col-lg-12 mt-3">
+		
+			<div class="col-lg-6">
+			<h4>Input Parameters</h4>
+			<p style="line-height:1.7;">
+				Exchange: Name of the exchange used<br/>
+Account: Name of the account to be used for the exchange<br/>
+Pair: Cryptocurrency Trading Pair<br/>
+Amount: Size of the order<br/>
+Entry Price: Price of the initial order<br/>
+Min Profit: The minimum amount of profit the tool should consider<br/>
+Trailing Margin: The amount of margin to consider for trailing<br/>
+Cancel Threshold (%): The amount of threshold to consider for cancelling the order<br/>
+PostOnly: Order will be placed as limit maker order (available only to exchanges that support this order type)<br/>
+Gap: (available only when PostOnly is OFF)<br/>
+Follow Gap: (available only when PostOnly is OFF)
+
+
+			</p>
+			<h4>Action</h4>
+			<p style="line-height:1.7;">
+				Place Buy: The tool will place a buy order to the exchange. After the order is filled, the tool will monitor the price and trail the order if necessary.<br/><br/>
+Place Sell: The tool will place a sell order to the exchange. After the order is filled, the tool will monitor the price and trail the order if necessary.
+
+
+
+			</p>
+			<h4>Note</h4>
+			<p style="line-height:1.7;">
+				This tool uses a “follow market” mechanism for order placing. Price of the order will be determine based on the prevailing order book prices
+			</p>
+			</div>
+			<div class="col-lg-6">
+		<img src="{% static 'images/pic2.jpg' %}" alt="" style="width:100%;border:1px solid #dedede;"  >
+		</div>
+	</div>
+	</div>
+</div>
+</section>
+
+
+
+
+
+{% endblock content %}
+
+
+
+
+
+
+
+{% endblock %}

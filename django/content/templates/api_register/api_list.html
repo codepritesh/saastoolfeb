@@ -1,0 +1,88 @@
+{% extends 'api_register/base_api_register.html' %}
+
+
+{% block content %}
+
+<div class="table-responsive">
+<a href="{% url 'apikey_insert' %}" class="btn btn-outline-success">
+                                        <i class="fas fa-plus "></i>Add New
+                                        </a>
+<table class="table table-bordered mt-3">
+    <thead class="boarder-bottom font-weight-bold">
+        <tr>
+           
+            <td>Name</td>
+            
+            <td>exchange_id</td>
+            <td style="display:none">api_keys</td>
+            <td style="display:none">secret_keys</td>
+            <td style="display:none">passphrase</td>
+           
+            <td>exclude_pnl</td>
+            
+            
+            <td style="display:none">tags</td>
+            <td style="display:none">update</td>
+            <td>delete</td>
+
+            
+            
+           
+        </tr>
+    </thead>
+    <tbody>
+                   {% for api_list in apikey_list %} 
+                   
+                   {% if api_list.own_name == user %}
+                   
+
+                    <tr>        
+                                
+                                <td>{{api_list.name}}</td>
+                                
+                                <td>{{api_list.ex_id}}</td>
+                                <td style="display:none">{{api_list.api_keys}}</td>
+                                <td style="display:none">{{api_list.secret_keys}}</td>
+                                <td style="display:none">{{api_list.passphrase}}</td>
+                               
+                                
+
+                                <td>{{api_list.exclude_pnl}}</td>
+                              
+                                
+                                <td style="display:none">{{api_list.tags}}</td>
+                                
+
+                                
+                                
+                                <td style="display:none">
+                                        <a href="{% url 'apikey_update' api_list.id %}" class="btn text-secondary px-0">
+                                        <i class="far fa-edit fa-lg"></i></a>
+                                        </td>
+                                        <td>
+
+                                        <form action="{%url 'apikey_delete' api_list.id %}" method="post" class="d-inline">
+                                        {% csrf_token %}
+                                        <button type="submit" class = "btn">
+                                                <i class="far fa-trash-alt fa-lg text-danger float-right"></i>
+                                        </button>
+                                        
+                                        </form>
+                                </td>
+                    
+                    </tr>
+                    
+                    {% endif %}
+                    
+
+                    {% endfor %}
+                    
+    
+    
+    </tbody>
+
+
+
+</table>
+</div>
+{% endblock content %}

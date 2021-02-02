@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="{% static 'favicon.ico' %}">
+    <title> Add Manual PNL - Trading Bot</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <script
+            src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{% static 'js/js.cookie.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/admin/manual_add_pnl.js' %}"></script>
+</head>
+<body>
+<section id="content">
+    <section>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="navbar-collapse">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/pnl-tracking">PNL Tracking</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="/manual-setting">Manual Setting</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/manual-add-pnl">Manual Add PNL</a>
+                    </li>
+{#                    <li class="nav-item">#}
+{#                            <a class="nav-link" href="/add-exception">PNL Add Exception</a>#}
+{#                    </li>#}
+                </ul>
+            </div>
+        </nav>
+    </section>
+    <section class="row no-margin" style="background-color: rgba(0,0,0,.03)">
+        <div class="col-9">
+            <div class="card">
+                <div class="card-header">
+                    <p>Input</p>
+                </div>
+                <div class="card-body">
+                    <div class="form-row value-row">
+{#                        {% include "components/ex_change_component.html" with n_col=2 label='Exchange' value=data.ex_id %}#}
+                        {% include "components/form_input_component.html" with n_col=2 label='Key' id='exchange' v_def='' value=data.exchange %}
+                        {% include "components/form_input_component.html" with n_col=2 label='Value' id='account' v_def='' value=data.account %}
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <p>Coin balance</p>
+                </div>
+                <div class="card-body">
+                    <div id="coins" class="form-row value-row">
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-around">
+                    <button id="btn-add" type="button" class="btn btn-primary col-md-2">Add
+                    </button>
+                    <button id="btn-delete" type="button" class="btn btn-danger col-md-2" style="display: none">Delete
+                    </button>
+                </div>
+        </div>
+        <div class="col-3" style="background-color: #0aa8ae">
+            <p>&nbsp;</p>
+            <div class="card">
+                <div class="card-header">
+                    <strong>Manual API List</strong>
+                </div>
+                <div class="card-body">
+                    <ul id="api-list">
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>
+</body>
+</html>

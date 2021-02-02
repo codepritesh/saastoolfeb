@@ -1,0 +1,74 @@
+{% extends 'adminLTE.html' %}
+
+
+{% block contentContainer %}
+<!-- this will block the usertable-->
+{% block user_bot_data %}  {% endblock %}
+<!-- this will block the usertable-->
+{% block content %}
+<section id="content">
+    <div class="card">
+        <div class="card-header">
+
+
+
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+        
+
+        
+  <h1>Enable Two-Factor Authentication</h1>
+  
+    <p>You are about to take your account security to the
+        next level. Follow these steps in this wizard to enable Two-Factor
+        authentication.</p>
+        <p>We have sent you otp to your mobile pls provide your otp to activate the 2 factor authentication </p>
+            <p>{{own_name}}</p>
+             <p>{{countrycode}}</p>
+              <p>{{mobile_number}}</p>
+              <p>{{request.session}}</p>
+  
+
+  <form action="" method="post">
+    {% csrf_token %}
+    
+
+
+
+
+ <label for="phone">Enter OTP Here.</label>
+<input type="tel" id="phone" name="mobile"> 
+
+
+<button type="submit" class="btn btn-primary">Next</button>
+
+  </form>
+
+      </div>
+    </div>
+  </div>
+
+     </div>
+    </div>
+ 
+</section>
+
+
+
+
+
+  
+  
+  {% endblock content %}
+
+
+{% endblock %}

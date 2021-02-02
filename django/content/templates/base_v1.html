@@ -1,0 +1,106 @@
+{% extends "adminLTE.html" %}
+{% block contentContainer %}
+    <section id="content">
+        <section class="form">
+            <div class="card">
+                <div class="card-header">Input</div>
+                <div class="card-body">
+                    <div class="form-padding-left">
+                        {% block v_input %} {% endblock %}
+                    </div>
+                    {% block another_btn %} {% endblock %}
+                    <div class="row justify-content-around">
+                        {% block v_action %}
+                            {% if not data %}
+                                <button id="btn-start-bot" type="button" class="btn btn-primary col-md-2">Initialization
+                                    Bot
+                                </button>
+                            {% endif %}
+                            {% if resume %}
+                                <button id="btn-resume-bot" type="button" class="btn btn-primary col-md-2">Resume Bot
+                                </button>
+                            {% endif %}
+                            {% if not resume %}
+                                <button id="btn-show-stop-bot" type="button" class="btn btn-danger col-md-2">Kill Bot
+                                </button>
+                            {% endif %}
+                        {% endblock %}
+                    </div>
+                </div>
+            </div>
+        </section>
+        {% block another_block %} {% endblock %}
+        <section id="eror-area">
+            <div class="card">
+                <div class="card-header text-bold alert-danger">
+                    Warning
+                </div>
+                <div class="card-body">
+                    <span id="error-lable" class="text-danger">&nbsp;</span>
+                </div>
+            </div>
+            <section class="table-pln">
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">START</th>
+                        <th scope="col">CURRENT</th>
+                        <th scope="col">IN ORDER</th>
+                        <th scope="col">STOP</th>
+                        <th scope="col">PNL</th>
+                        <th scope="col">PROFIT</th>
+                        <th scope="col">#</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr id="base-currency">
+                        <th scope="row">Base Currency</th>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>% TOTAL PROFIT</td>
+                        <td>0.0</td>
+                    </tr>
+                    <tr id="quote-currency">
+                        <th scope="row">Quote Currency</th>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>STOP PRICE</td>
+                        <td>0.0</td>
+                    </tr>
+                    <tr id="coin-fee">
+                        <th scope="row">Coin Fee</th>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>FEE PRICE</td>
+                        <td>0.0</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </section>
+        </section>
+        {% block content %}{% endblock %}
+    </section>
+    <section id="area_loading">
+        {% block area_loading %}
+        {% endblock %}
+    </section>
+    <section id="area_modal">
+        {% include "components/modal_stop_bot_success_component.html" %}
+        {% include "components/modal_confirm_kill_bot.html" %}
+    </section>
+    {% block jsFile %}
+        <script type="text/javascript" src="{% static 'js/common/ws_common.js' %}"></script>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <script type="text/javascript" src="{% static 'js/common/index.js' %}"></script>
+    {% endblock %}
+{% endblock %}

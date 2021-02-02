@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="{% static 'favicon.ico' %}">
+    {% block head %}
+        <title>{% block title %}{% endblock %} - Trading Bot</title>
+    {% endblock %}
+    <link rel="stylesheet" href="{% static 'css/all.min.css' %}">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href=" {% static 'css/adminlte.min.css' %}">
+    <link rel="stylesheet" href=" {% static 'css/switch_button_bootstrap/bootstrap-switch-button.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/dataTables.bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <!-- jQuery -->
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <!-- Bootstrap 4 -->
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script src=" {% static 'js/adminlte.min.js' %}"></script>
+    <script>
+        var port = location.port;
+        var ws_define = "{{ ws_define|escapejs }}";
+        var user = "{{ user|escapejs }}";
+    </script>
+    <script type="text/javascript" src="{% static 'js/uuid_v1.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/csv_convert/jquery.csv.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/csv_convert/jquery.dataTables.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/csv_convert/dataTables.bootstrap.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/csv_convert/csv_to_html_table.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/moment.min.js' %}"></script>
+    {% block pnl_index %}
+    <script type="text/javascript" src="{% static 'js/common/pnl_index.js' %}"></script>
+    {% endblock %}
+    <style>
+        .custom-select {
+            height: 29px;
+            font-size: 14px;
+        }
+    </style>
+    {% block rec_data %} {% endblock %}
+    {% block h_common %}
+    {% endblock %}
+</head>
+<body>
+<section id="content">
+    <section>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="navbar-collapse">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    {% block botUrl %}
+
+                    {% endblock %}
+                </ul>
+            </div>
+        </nav>
+    </section>
+{% block form_input %}
+    <section class="form">
+        <div class="card">
+            <div class="card-header">Input</div>
+            <div class="card-body">
+                <div class="form-padding-left">
+                    {% block v_input %} {% endblock %}
+                </div>
+                {% block another_btn %} {% endblock %}
+                <div class="row justify-content-around">
+                    {% block v_action %}
+                        <button id="btn-get-pnl" type="button" class="btn btn-primary col-md-2">Get PNL</button>
+                        <button id="btn-get-balance" type="button" class="btn btn-success col-md-2">Get Balance</button>
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+    {% block another_block %} {% endblock %}
+    {% block content %}{% endblock %}
+</section>
+    {% include "components/modal_action_monitor_bot.html" %}
+</body>
+
+</html>

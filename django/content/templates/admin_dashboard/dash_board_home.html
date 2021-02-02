@@ -1,0 +1,100 @@
+{% extends 'admin_dashboard/user_basepage.html' %}
+
+{% if user.is_superuser %}
+{% block contentContainer %}
+<!-- this will block the usertable-->
+{% block user_bot_data %}  {% endblock %}
+<!-- this will block the usertable-->
+{% block content %}
+
+
+
+    <section id="content">
+	<div class="card">
+		<div class="card-header">
+			All User
+		</div>
+            <div class="card-body no-border">
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>last_login</th>
+            <th>username</th>
+            <th>first_name</th>
+            <th>last_name</th>
+            <th>email</th>
+            <th>date_joined</th>
+            <th>is_active</th>
+            <th>permission</th>
+            <th>update</th>
+            <th>delete</th>
+           
+        </tr>
+    </thead>
+    <tbody>
+
+                   {% for api_list in user_list %} 
+                    <tr>
+                                
+                                <td>{{api_list.last_login}}</td>
+                                <td>{{api_list.username}}</td>
+                                <td>{{api_list.first_name}}</td>
+                                <td>{{api_list.last_name}}</td>
+                                <td>{{api_list.email}}</td>
+                                <td>{{api_list.date_joined}}</td>
+                                <td>{{api_list.is_active}}</td>
+                             
+                                
+                                <td>
+                                        <a href="{% url 'user_permission_update' api_list.id %}" class="btn text-secondary px-0">
+                                        <i class="far fa-edit fa-lg"></i></a>
+                                </td>
+
+                                  <td>
+                                        <a href="{% url 'user_data_update' api_list.id %}" class="btn text-secondary px-0">
+                                        <i class="far fa-edit fa-lg"></i></a>
+                                </td>
+
+
+                                       
+
+                                         <td>
+
+                                        <form action="{%url 'user_delete' api_list.id %}" method="post" class="d-inline" onsubmit="return confirm('{{api_list.username}}\nDo you really want to delete this user ?');">
+                                        {% csrf_token %}
+                                        <button type="submit" class = "btn">
+                                                <i class="far fa-trash-alt fa-lg text-danger float-right"></i>
+                                        </button>
+                                        
+                                        </form>
+                                         </td>
+                                         
+                                </td>
+                             
+                    </tr>
+                    {% endfor %}
+                    
+    
+    
+    </tbody>
+
+
+
+</table>
+</div>
+</div>
+</section>
+{% endblock content %}
+{% endblock %}
+
+{% else %}
+<h1>
+sorry boose you are not super users.
+</h1>
+
+
+
+
+
+
+{% endif %}

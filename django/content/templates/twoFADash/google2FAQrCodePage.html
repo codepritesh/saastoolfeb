@@ -1,0 +1,82 @@
+{% extends 'adminLTE.html' %}
+{% load static %}
+{% static "" as baseUrl %}
+
+
+{% block contentContainer %}
+<!-- this will block the usertable-->
+{% block user_bot_data %}  {% endblock %}
+<!-- this will block the usertable-->
+{% block content %}
+<section  id="content">
+    <div  class="card  ">
+        <div class="card-header">
+
+
+
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        
+      </div>
+    </div>
+  </nav>
+
+  <div  class="container">
+    <div class=" d-flex justify-content-center">
+      <div class="col-sm-12 col-sm-offset-2 col-md-8 col-md-offset-3">
+        
+
+        
+  <h4>Open your Google Authenticator App and scan the QR code below:</h4>
+  
+    
+  
+
+  <form action="" method="post">
+    {% csrf_token %}
+    
+
+<div class="form-horizontal">
+  
+
+
+
+
+
+</div>
+
+
+
+<img src="{{ baseUrl }}/static/qrcode/{{own_name}}.png" alt="" style="width:50%;border:1px solid #dedede;"  >
+
+   <p> Or manually enter the generated secret key:</p> 
+ 
+ <p> Your generated secret key:  <a href="#"> {{secreate_key}}</a></p>
+  <p> *Please backup and store your secret key in a safe and secure place. If you have lost your secret key, please contact admin for assistance.</p> 
+   <p> Please enter your 6-digit GA code to activate your 2FA.</p> 
+
+<input type="tel" id="authcode" name="authcodenumber" pattern="[0-9]{6}"> 
+
+
+<button type="submit" class="btn btn-primary">Activate</button>
+
+  </form>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
+</section>
+
+
+
+
+  
+  
+  {% endblock content %}
+
+
+{% endblock %}

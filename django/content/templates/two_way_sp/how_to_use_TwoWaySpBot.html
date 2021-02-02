@@ -1,0 +1,84 @@
+{% extends "adminLTE.html" %}
+{% load static %}
+{% block botUrl %}
+<li class="nav-item active">
+  <a class="nav-link" href="/two_way_sp_tool">Two Way Sp Bot</a>
+</li>
+    <li class="nav-item">
+        <a class="nav-link" href="/two_way_sp_tool/tracking">Tracking</a>
+    </li>
+    {% comment %}
+    <li class="nav-item">
+        <a class="nav-link" href="/two_way_sp_tool/snapshot">SnapShot</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/two_way_sp_tool/chart">Chart</a>
+    </li>
+    {% endcomment %}
+{% endblock %}
+{% block contentContainer %}
+
+
+<!-- this will block the usertable-->
+{% block user_bot_data %}  {% endblock %}
+<!-- this will block the usertable-->
+
+
+{% block content %}
+ <section id="content">
+<div class="card">
+	<div class="card-header">How To Use Two Way Sp Bot</div>
+	<div class="card-body">
+		<video style="width:100%;" controls autoplay>
+									<source src="{% static 'images/BSSB.mp4' %}" type="video/mp4">
+								</video>
+		<div class="row col-lg-12 mt-3">
+		
+			<div class="col-lg-6">
+			<h4>Input Parameters</h4>
+			<p style="line-height:1.7;">
+				Exchange: Name of the exchange used<br/>
+	Account: Name of the account used for the exchange<br/>
+	Pair: Cryptocurrency Trading Pair<br/>
+	Amount: Amount to be used for each order<br/>
+	Profit: The profit margin between Buy and Sell<br/>
+	Timer: The time between each new order placed to the exchange<br/>
+	PostOnly: Order will be placed as limit maker order (available only to exchanges that support this order type)
+
+			</p>
+			<h4>Action</h4>
+			<p style="line-height:1.7;">
+				Buy/Sell: The tool will execute a buy and sell cycle<br/>
+	Sell/Buy: The tool will execute a sell and buy cycle<br/>
+	Stop: The tool will stop placing new order
+
+
+			</p>
+			<h4>Note</h4>
+			<p style="line-height:1.7;">
+				The tool uses a “follow market” mechanism for order placing. 
+
+
+			</p>
+			</div>
+			<div class="col-lg-6">
+		<img src="{% static 'images/pic1.jpg' %}" alt="" style="width:100%;border:1px solid #dedede;"  >
+		</div>
+	</div>
+	</div>
+</div>
+</section>
+
+
+
+
+
+{% endblock content %}
+
+
+
+
+
+
+
+{% endblock %}

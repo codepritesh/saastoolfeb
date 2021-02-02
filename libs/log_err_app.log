@@ -1,0 +1,1035 @@
+2020-09-06 15:54:34,772 - example_logger - ERROR - There was an exception in  __init__
+Traceback (most recent call last):
+  File "/home/namnguyen/trading_bots/libs/exception_decor.py", line 35, in wrapper
+    return function(*args, **kwargs)
+  File "/home/namnguyen/trading_bots/libs/exchange_lib.py", line 160, in __init__
+    self._ws_api.register_order_progress()
+  File "/home/namnguyen/trading_bots/libs/binance_wsclient/binance_wsclient.py", line 262, in register_order_progress
+    balances = self._rest_api.fetch_balance()
+  File "/usr/local/lib/python3.8/dist-packages/ccxt/binance.py", line 654, in fetch_balance
+    response = getattr(self, method)(query)
+  File "/usr/local/lib/python3.8/dist-packages/ccxt/base/exchange.py", line 463, in inner
+    return entry(_self, **inner_kwargs)
+  File "/usr/local/lib/python3.8/dist-packages/ccxt/binance.py", line 2134, in request
+    response = self.fetch2(path, api, method, params, headers, body)
+  File "/usr/local/lib/python3.8/dist-packages/ccxt/base/exchange.py", line 481, in fetch2
+    request = self.sign(path, api, method, params, headers, body)
+  File "/usr/local/lib/python3.8/dist-packages/ccxt/binance.py", line 2047, in sign
+    self.check_required_credentials()
+  File "/usr/local/lib/python3.8/dist-packages/ccxt/base/exchange.py", line 1215, in check_required_credentials
+    raise AuthenticationError('requires `' + key + '`')
+ccxt.base.errors.AuthenticationError: requires `apiKey`
+2020-10-16 10:28:09,201 - example_logger - ERROR - There was an exception in  __init__
+Traceback (most recent call last):
+  File "/home/namnguyen/trading_bots/libs/exception_decor.py", line 35, in wrapper
+    return function(*args, **kwargs)
+TypeError: __init__() missing 1 required positional argument: 'exchange_id'
+2020-10-16 10:28:15,412 - example_logger - ERROR - There was an exception in  __init__
+Traceback (most recent call last):
+  File "/home/namnguyen/trading_bots/libs/exception_decor.py", line 35, in wrapper
+    return function(*args, **kwargs)
+  File "/home/namnguyen/trading_bots/libs/exchange_lib.py", line 88, in __init__
+    key, secret, passphrase = load_api(apifile)
+  File "/home/namnguyen/trading_bots/libs/exchange_lib.py", line 43, in load_api
+    with open(cwd + '/../api_keys/' + api_file, 'r') as f:
+FileNotFoundError: [Errno 2] No such file or directory: '/home/namnguyen/trading_bots/libs/../api_keys/kraken.api'
+2020-10-22 15:54:03,095 - example_logger - ERROR - There was an exception in  invoke_clear_order
+Traceback (most recent call last):
+  File "/Users/dinhmahone/Documents/workspace/saas_tools/django/d_trading_bots/../../libs/exception_decor.py", line 35, in wrapper
+    return function(*args, **kwargs)
+  File "/Users/dinhmahone/Documents/workspace/saas_tools/django/avg_tool/consumers.py", line 72, in invoke_clear_order
+    bot.clear_order(web_input)
+  File "/Users/dinhmahone/Documents/workspace/saas_tools/django/avg_tool/../../bots/clear_order_bot.py", line 87, in clear_order
+    self.create_trade_order(self._clear_side)
+  File "/Users/dinhmahone/Documents/workspace/saas_tools/django/avg_tool/../../bots/clear_order_bot.py", line 97, in create_trade_order
+    ask, bid = self._fetch_best_price(self._pair, side, get_ask_bid=True)
+TypeError: _fetch_best_price() got an unexpected keyword argument 'get_ask_bid'
+2020-11-30 13:35:38,497 - example_logger - ERROR - There was an exception in  invoke_clear_order
+Traceback (most recent call last):
+  File "/root/saas_tools-master24/django/d_trading_bots/../../libs/exception_decor.py", line 35, in wrapper
+    return function(*args, **kwargs)
+  File "/root/saas_tools-master24/django/avg_tool/consumers.py", line 72, in invoke_clear_order
+    bot.clear_order(web_input)
+  File "/root/saas_tools-master24/django/avg_tool/../../bots/clear_order_bot.py", line 76, in clear_order
+    for order in open_orders:
+TypeError: 'NoneType' object is not iterable
+2020-12-13 19:56:17,280 - example_logger - ERROR - There was an exception in  _socket_emit_new
+Traceback (most recent call last):
+  File "/root/saastool2/django/d_trading_bots/../../libs/common.py", line 100, in socket_emit2
+    async_to_sync(channel_layer.group_send)(channel_uuid, {'type': 'forward_msg', 'message': data, 'channel_mux': channel_mux})
+  File "/usr/local/lib/python3.8/dist-packages/asgiref/sync.py", line 147, in __call__
+    return call_result.result()
+  File "/usr/lib/python3.8/concurrent/futures/_base.py", line 432, in result
+    return self.__get_result()
+  File "/usr/lib/python3.8/concurrent/futures/_base.py", line 388, in __get_result
+    raise self._exception
+  File "/usr/local/lib/python3.8/dist-packages/asgiref/sync.py", line 212, in main_wrap
+    result = await self.awaitable(*args, **kwargs)
+  File "/usr/local/lib/python3.8/dist-packages/channels_redis/core.py", line 647, in group_send
+    async with self.connection(self.consistent_hash(group)) as connection:
+  File "/usr/local/lib/python3.8/dist-packages/channels_redis/core.py", line 884, in __aenter__
+    self.conn = await self.pool.pop()
+  File "/usr/local/lib/python3.8/dist-packages/channels_redis/core.py", line 78, in pop
+    conn = await aioredis.create_redis(**self.host)
+  File "/usr/local/lib/python3.8/dist-packages/aioredis/commands/__init__.py", line 168, in create_redis
+    conn = await create_connection(address, db=db,
+  File "/usr/local/lib/python3.8/dist-packages/aioredis/connection.py", line 111, in create_connection
+    reader, writer = await asyncio.wait_for(open_connection(
+  File "/usr/lib/python3.8/asyncio/tasks.py", line 455, in wait_for
+    return await fut
+  File "/usr/local/lib/python3.8/dist-packages/aioredis/stream.py", line 23, in open_connection
+    transport, _ = await get_event_loop().create_connection(
+  File "/usr/lib/python3.8/asyncio/base_events.py", line 1025, in create_connection
+    raise exceptions[0]
+  File "/usr/lib/python3.8/asyncio/base_events.py", line 1010, in create_connection
+    sock = await self._connect_sock(
+  File "/usr/lib/python3.8/asyncio/base_events.py", line 924, in _connect_sock
+    await self.sock_connect(sock, address)
+  File "/usr/lib/python3.8/asyncio/selector_events.py", line 494, in sock_connect
+    return await fut
+  File "/usr/lib/python3.8/asyncio/selector_events.py", line 526, in _sock_connect_cb
+    raise OSError(err, f'Connect call failed {address}')
+ConnectionRefusedError: [Errno 111] Connect call failed ('127.0.0.1', 6379)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/root/saastool2/django/d_trading_bots/../../libs/common.py", line 103, in socket_emit2
+    print(tb)
+OSError: [Errno 5] Input/output error
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/root/saastool2/django/d_trading_bots/../../libs/exception_decor.py", line 35, in wrapper
+    return function(*args, **kwargs)
+  File "/root/saastool2/django/avg_tool/../../bots/bot_father.py", line 165, in _socket_emit_new
+    socket_emit2(data, self._channel_layer, self._channel, channel_mux)
+  File "/root/saastool2/django/d_trading_bots/../../libs/common.py", line 105, in socket_emit2
+    print(f'ERROR socket_emit2: {e}')
+OSError: [Errno 5] Input/output error
+2020-12-13 19:56:17,282 - example_logger - ERROR - There was an exception in  _socket_emit_new
+Traceback (most recent call last):
+  File "/root/saastool2/django/d_trading_bots/../../libs/common.py", line 100, in socket_emit2
+    async_to_sync(channel_layer.group_send)(channel_uuid, {'type': 'forward_msg', 'message': data, 'channel_mux': channel_mux})
+  File "/usr/local/lib/python3.8/dist-packages/asgiref/sync.py", line 147, in __call__
+    return call_result.result()
+  File "/usr/lib/python3.8/concurrent/futures/_base.py", line 432, in result
+    return self.__get_result()
+  File "/usr/lib/python3.8/concurrent/futures/_base.py", line 388, in __get_result
+    raise self._exception
+  File "/usr/local/lib/python3.8/dist-packages/asgiref/sync.py", line 212, in main_wrap
+    result = await self.awaitable(*args, **kwargs)
+  File "/usr/local/lib/python3.8/dist-packages/channels_redis/core.py", line 647, in group_send
+    async with self.connection(self.consistent_hash(group)) as connection:
+  File "/usr/local/lib/python3.8/dist-packages/channels_redis/core.py", line 884, in __aenter__
+    self.conn = await self.pool.pop()
+  File "/usr/local/lib/python3.8/dist-packages/channels_redis/core.py", line 78, in pop
+    conn = await aioredis.create_redis(**self.host)
+  File "/usr/local/lib/python3.8/dist-packages/aioredis/commands/__init__.py", line 168, in create_redis
+    conn = await create_connection(address, db=db,
+  File "/usr/local/lib/python3.8/dist-packages/aioredis/connection.py", line 111, in create_connection
+    reader, writer = await asyncio.wait_for(open_connection(
+  File "/usr/lib/python3.8/asyncio/tasks.py", line 455, in wait_for
+    return await fut
+  File "/usr/local/lib/python3.8/dist-packages/aioredis/stream.py", line 23, in open_connection
+    transport, _ = await get_event_loop().create_connection(
+  File "/usr/lib/python3.8/asyncio/base_events.py", line 1025, in create_connection
+    raise exceptions[0]
+  File "/usr/lib/python3.8/asyncio/base_events.py", line 1010, in create_connection
+    sock = await self._connect_sock(
+  File "/usr/lib/python3.8/asyncio/base_events.py", line 924, in _connect_sock
+    await self.sock_connect(sock, address)
+  File "/usr/lib/python3.8/asyncio/selector_events.py", line 494, in sock_connect
+    return await fut
+  File "/usr/lib/python3.8/asyncio/selector_events.py", line 526, in _sock_connect_cb
+    raise OSError(err, f'Connect call failed {address}')
+ConnectionRefusedError: [Errno 111] Connect call failed ('127.0.0.1', 6379)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/root/saastool2/django/d_trading_bots/../../libs/common.py", line 103, in socket_emit2
+    print(tb)
+OSError: [Errno 5] Input/output error
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/root/saastool2/django/d_trading_bots/../../libs/exception_decor.py", line 35, in wrapper
+    return function(*args, **kwargs)
+  File "/root/saastool2/django/avg_tool/../../bots/bot_father.py", line 165, in _socket_emit_new
+    socket_emit2(data, self._channel_layer, self._channel, channel_mux)
+  File "/root/saastool2/django/d_trading_bots/../../libs/common.py", line 105, in socket_emit2
+    print(f'ERROR socket_emit2: {e}')
+OSError: [Errno 5] Input/output error
+2020-12-13 19:56:17,695 - example_logger - ERROR - There was an exception in  _log_new
+Traceback (most recent call last):
+  File "/root/saastool2/django/d_trading_bots/../../libs/common.py", line 100, in socket_emit2
+    async_to_sync(channel_layer.group_send)(channel_uuid, {'type': 'forward_msg', 'message': data, 'channel_mux': channel_mux})
+  File "/usr/local/lib/python3.8/dist-packages/asgiref/sync.py", line 147, in __call__
+    return call_result.result()
+  File "/usr/lib/python3.8/concurrent/futures/_base.py", line 432, in result
+    return self.__get_result()
+  File "/usr/lib/python3.8/concurrent/futures/_base.py", line 388, in __get_result
+    raise self._exception
+  File "/usr/local/lib/python3.8/dist-packages/asgiref/sync.py", line 212, in main_wrap
+    result = await self.awaitable(*args, **kwargs)
+  File "/usr/local/lib/python3.8/dist-packages/channels_redis/core.py", line 647, in group_send
+    async with self.connection(self.consistent_hash(group)) as connection:
+  File "/usr/local/lib/python3.8/dist-packages/channels_redis/core.py", line 884, in __aenter__
+    self.conn = await self.pool.pop()
+  File "/usr/local/lib/python3.8/dist-packages/channels_redis/core.py", line 78, in pop
+    conn = await aioredis.create_redis(**self.host)
+  File "/usr/local/lib/python3.8/dist-packages/aioredis/commands/__init__.py", line 168, in create_redis
+    conn = await create_connection(address, db=db,
+  File "/usr/local/lib/python3.8/dist-packages/aioredis/connection.py", line 111, in create_connection
+    reader, writer = await asyncio.wait_for(open_connection(
+  File "/usr/lib/python3.8/asyncio/tasks.py", line 455, in wait_for
+    return await fut
+  File "/usr/local/lib/python3.8/dist-packages/aioredis/stream.py", line 23, in open_connection
+    transport, _ = await get_event_loop().create_connection(
+  File "/usr/lib/python3.8/asyncio/base_events.py", line 1025, in create_connection
+    raise exceptions[0]
+  File "/usr/lib/python3.8/asyncio/base_events.py", line 1010, in create_connection
+    sock = await self._connect_sock(
+  File "/usr/lib/python3.8/asyncio/base_events.py", line 924, in _connect_sock
+    await self.sock_connect(sock, address)
+  File "/usr/lib/python3.8/asyncio/selector_events.py", line 494, in sock_connect
+    return await fut
+  File "/usr/lib/python3.8/asyncio/selector_events.py", line 526, in _sock_connect_cb
+    raise OSError(err, f'Connect call failed {address}')
+ConnectionRefusedError: [Errno 111] Connect call failed ('127.0.0.1', 6379)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/root/saastool2/django/d_trading_bots/../../libs/common.py", line 103, in socket_emit2
+    print(tb)
+OSError: [Errno 5] Input/output error
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/root/saastool2/django/d_trading_bots/../../libs/exception_decor.py", line 35, in wrapper
+    return function(*args, **kwargs)
+  File "/root/saastool2/django/avg_tool/../../bots/bot_father.py", line 165, in _socket_emit_new
+    socket_emit2(data, self._channel_layer, self._channel, channel_mux)
+  File "/root/saastool2/django/d_trading_bots/../../libs/common.py", line 105, in socket_emit2
+    print(f'ERROR socket_emit2: {e}')
+OSError: [Errno 5] Input/output error
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.8/dist-packages/asgiref/sync.py", line 208, in main_wrap
+    raise exc_info[1]
+  File "/root/saastool2/django/avg_tool/../../bots/bot_father.py", line 1174, in _mdf_export_pnl_report
+    self._socket_emit(data, 'pnl')
+  File "/root/saastool2/django/d_trading_bots/../../libs/exception_decor.py", line 42, in wrapper
+    print('{}___/n__{}'.format(err, tb))
+OSError: [Errno 5] Input/output error
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/root/saastool2/django/d_trading_bots/../../libs/common.py", line 85, in log2
+    async_to_sync(channel_layer.group_send)(channel_uuid, {'type': 'forward_msg', 'message': data_str, 'channel_mux': channel_mux})
+  File "/usr/local/lib/python3.8/dist-packages/asgiref/sync.py", line 147, in __call__
+    return call_result.result()
+  File "/usr/lib/python3.8/concurrent/futures/_base.py", line 432, in result
+    return self.__get_result()
+  File "/usr/lib/python3.8/concurrent/futures/_base.py", line 388, in __get_result
+    raise self._exception
+  File "/usr/local/lib/python3.8/dist-packages/asgiref/sync.py", line 210, in main_wrap
+    result = await self.awaitable(*args, **kwargs)
+  File "/usr/local/lib/python3.8/dist-packages/channels_redis/core.py", line 647, in group_send
+    async with self.connection(self.consistent_hash(group)) as connection:
+  File "/usr/local/lib/python3.8/dist-packages/channels_redis/core.py", line 884, in __aenter__
+    self.conn = await self.pool.pop()
+  File "/usr/local/lib/python3.8/dist-packages/channels_redis/core.py", line 78, in pop
+    conn = await aioredis.create_redis(**self.host)
+  File "/usr/local/lib/python3.8/dist-packages/aioredis/commands/__init__.py", line 168, in create_redis
+    conn = await create_connection(address, db=db,
+  File "/usr/local/lib/python3.8/dist-packages/aioredis/connection.py", line 111, in create_connection
+    reader, writer = await asyncio.wait_for(open_connection(
+  File "/usr/lib/python3.8/asyncio/tasks.py", line 455, in wait_for
+    return await fut
+  File "/usr/local/lib/python3.8/dist-packages/aioredis/stream.py", line 23, in open_connection
+    transport, _ = await get_event_loop().create_connection(
+  File "/usr/lib/python3.8/asyncio/base_events.py", line 1025, in create_connection
+    raise exceptions[0]
+  File "/usr/lib/python3.8/asyncio/base_events.py", line 1010, in create_connection
+    sock = await self._connect_sock(
+  File "/usr/lib/python3.8/asyncio/base_events.py", line 924, in _connect_sock
+    await self.sock_connect(sock, address)
+  File "/usr/lib/python3.8/asyncio/selector_events.py", line 494, in sock_connect
+    return await fut
+  File "/usr/lib/python3.8/asyncio/selector_events.py", line 526, in _sock_connect_cb
+    raise OSError(err, f'Connect call failed {address}')
+ConnectionRefusedError: [Errno 111] Connect call failed ('127.0.0.1', 6379)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/root/saastool2/django/d_trading_bots/../../libs/common.py", line 88, in log2
+    print(tb)
+OSError: [Errno 5] Input/output error
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/root/saastool2/django/d_trading_bots/../../libs/exception_decor.py", line 35, in wrapper
+    return function(*args, **kwargs)
+  File "/root/saastool2/django/avg_tool/../../bots/bot_father.py", line 161, in _log_new
+    log2(data, self._logger, self._channel_layer, self._channel, Chanel.LOG, severity=severity)
+  File "/root/saastool2/django/d_trading_bots/../../libs/common.py", line 93, in log2
+    print(f'ERROR log2: {e}')
+OSError: [Errno 5] Input/output error
+2020-12-13 22:24:17,893 - example_logger - ERROR - There was an exception in  __init__
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/urllib3/connection.py", line 159, in _new_conn
+    conn = connection.create_connection(
+  File "/usr/lib/python3/dist-packages/urllib3/util/connection.py", line 61, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+  File "/usr/lib/python3.8/socket.py", line 918, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 665, in urlopen
+    httplib_response = self._make_request(
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 376, in _make_request
+    self._validate_conn(conn)
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 996, in _validate_conn
+    conn.connect()
+  File "/usr/lib/python3/dist-packages/urllib3/connection.py", line 314, in connect
+    conn = self._new_conn()
+  File "/usr/lib/python3/dist-packages/urllib3/connection.py", line 171, in _new_conn
+    raise NewConnectionError(
+urllib3.exceptions.NewConnectionError: <urllib3.connection.VerifiedHTTPSConnection object at 0x7fe0486d11f0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/requests/adapters.py", line 439, in send
+    resp = conn.urlopen(
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 719, in urlopen
+    retries = retries.increment(
+  File "/usr/lib/python3/dist-packages/urllib3/util/retry.py", line 436, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='api.binance.com', port=443): Max retries exceeded with url: /api/v3/exchangeInfo (Caused by NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x7fe0486d11f0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/root/saastool2/django/d_trading_bots/../../libs/exception_decor.py", line 35, in wrapper
+    return function(*args, **kwargs)
+  File "/root/saastool2/django/d_trading_bots/../../libs/exchange_lib.py", line 116, in __init__
+    self._ws_api = Binance(key, secret, logger=self._ws_log, rest_api=self._rest_api, **kwargs)
+  File "/root/saastool2/django/d_trading_bots/../../libs/binance_wsclient/binance_wsclient.py", line 34, in __init__
+    BinanceCommon.__init__(self, rest_api=rest_api, ws_manager=ws_manager, logger=logger)
+  File "/root/saastool2/libs/binance_wsclient/binance_common.py", line 216, in __init__
+    self._pair_dict = get_exchange_info(self._ws_manager.EX_INFO_API_URL)
+  File "/root/saastool2/libs/binance_wsclient/binance_common.py", line 34, in get_exchange_info
+    res = requests.get(ex_info_api_url)
+  File "/usr/lib/python3/dist-packages/requests/api.py", line 75, in get
+    return request('get', url, params=params, **kwargs)
+  File "/usr/lib/python3/dist-packages/requests/api.py", line 60, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/usr/lib/python3/dist-packages/requests/sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/usr/lib/python3/dist-packages/requests/sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "/usr/lib/python3/dist-packages/requests/adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='api.binance.com', port=443): Max retries exceeded with url: /api/v3/exchangeInfo (Caused by NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x7fe0486d11f0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+2020-12-13 22:30:17,656 - example_logger - ERROR - There was an exception in  __init__
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/urllib3/connection.py", line 159, in _new_conn
+    conn = connection.create_connection(
+  File "/usr/lib/python3/dist-packages/urllib3/util/connection.py", line 61, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+  File "/usr/lib/python3.8/socket.py", line 918, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 665, in urlopen
+    httplib_response = self._make_request(
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 376, in _make_request
+    self._validate_conn(conn)
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 996, in _validate_conn
+    conn.connect()
+  File "/usr/lib/python3/dist-packages/urllib3/connection.py", line 314, in connect
+    conn = self._new_conn()
+  File "/usr/lib/python3/dist-packages/urllib3/connection.py", line 171, in _new_conn
+    raise NewConnectionError(
+urllib3.exceptions.NewConnectionError: <urllib3.connection.VerifiedHTTPSConnection object at 0x7fdffc7a39d0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/requests/adapters.py", line 439, in send
+    resp = conn.urlopen(
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 719, in urlopen
+    retries = retries.increment(
+  File "/usr/lib/python3/dist-packages/urllib3/util/retry.py", line 436, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='api.binance.com', port=443): Max retries exceeded with url: /api/v3/exchangeInfo (Caused by NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x7fdffc7a39d0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/root/saastool2/django/d_trading_bots/../../libs/exception_decor.py", line 35, in wrapper
+    return function(*args, **kwargs)
+  File "/root/saastool2/django/d_trading_bots/../../libs/exchange_lib.py", line 116, in __init__
+    self._ws_api = Binance(key, secret, logger=self._ws_log, rest_api=self._rest_api, **kwargs)
+  File "/root/saastool2/django/d_trading_bots/../../libs/binance_wsclient/binance_wsclient.py", line 34, in __init__
+    BinanceCommon.__init__(self, rest_api=rest_api, ws_manager=ws_manager, logger=logger)
+  File "/root/saastool2/libs/binance_wsclient/binance_common.py", line 216, in __init__
+    self._pair_dict = get_exchange_info(self._ws_manager.EX_INFO_API_URL)
+  File "/root/saastool2/libs/binance_wsclient/binance_common.py", line 34, in get_exchange_info
+    res = requests.get(ex_info_api_url)
+  File "/usr/lib/python3/dist-packages/requests/api.py", line 75, in get
+    return request('get', url, params=params, **kwargs)
+  File "/usr/lib/python3/dist-packages/requests/api.py", line 60, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/usr/lib/python3/dist-packages/requests/sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/usr/lib/python3/dist-packages/requests/sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "/usr/lib/python3/dist-packages/requests/adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='api.binance.com', port=443): Max retries exceeded with url: /api/v3/exchangeInfo (Caused by NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x7fdffc7a39d0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+2020-12-14 18:32:35,069 - example_logger - ERROR - There was an exception in  __init__
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/urllib3/connection.py", line 159, in _new_conn
+    conn = connection.create_connection(
+  File "/usr/lib/python3/dist-packages/urllib3/util/connection.py", line 61, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+  File "/usr/lib/python3.8/socket.py", line 918, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 665, in urlopen
+    httplib_response = self._make_request(
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 376, in _make_request
+    self._validate_conn(conn)
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 996, in _validate_conn
+    conn.connect()
+  File "/usr/lib/python3/dist-packages/urllib3/connection.py", line 314, in connect
+    conn = self._new_conn()
+  File "/usr/lib/python3/dist-packages/urllib3/connection.py", line 171, in _new_conn
+    raise NewConnectionError(
+urllib3.exceptions.NewConnectionError: <urllib3.connection.VerifiedHTTPSConnection object at 0x7f5235b2d100>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/requests/adapters.py", line 439, in send
+    resp = conn.urlopen(
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 719, in urlopen
+    retries = retries.increment(
+  File "/usr/lib/python3/dist-packages/urllib3/util/retry.py", line 436, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='api.binance.com', port=443): Max retries exceeded with url: /api/v3/exchangeInfo (Caused by NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x7f5235b2d100>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/root/saastool2/django/d_trading_bots/../../libs/exception_decor.py", line 35, in wrapper
+    return function(*args, **kwargs)
+  File "/root/saastool2/django/d_trading_bots/../../libs/exchange_lib.py", line 116, in __init__
+    self._ws_api = Binance(key, secret, logger=self._ws_log, rest_api=self._rest_api, **kwargs)
+  File "/root/saastool2/django/d_trading_bots/../../libs/binance_wsclient/binance_wsclient.py", line 34, in __init__
+    BinanceCommon.__init__(self, rest_api=rest_api, ws_manager=ws_manager, logger=logger)
+  File "/root/saastool2/libs/binance_wsclient/binance_common.py", line 216, in __init__
+    self._pair_dict = get_exchange_info(self._ws_manager.EX_INFO_API_URL)
+  File "/root/saastool2/libs/binance_wsclient/binance_common.py", line 34, in get_exchange_info
+    res = requests.get(ex_info_api_url)
+  File "/usr/lib/python3/dist-packages/requests/api.py", line 75, in get
+    return request('get', url, params=params, **kwargs)
+  File "/usr/lib/python3/dist-packages/requests/api.py", line 60, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/usr/lib/python3/dist-packages/requests/sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/usr/lib/python3/dist-packages/requests/sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "/usr/lib/python3/dist-packages/requests/adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='api.binance.com', port=443): Max retries exceeded with url: /api/v3/exchangeInfo (Caused by NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x7f5235b2d100>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+2020-12-14 18:32:58,689 - example_logger - ERROR - There was an exception in  __init__
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/urllib3/connection.py", line 159, in _new_conn
+    conn = connection.create_connection(
+  File "/usr/lib/python3/dist-packages/urllib3/util/connection.py", line 61, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+  File "/usr/lib/python3.8/socket.py", line 918, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 665, in urlopen
+    httplib_response = self._make_request(
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 376, in _make_request
+    self._validate_conn(conn)
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 996, in _validate_conn
+    conn.connect()
+  File "/usr/lib/python3/dist-packages/urllib3/connection.py", line 314, in connect
+    conn = self._new_conn()
+  File "/usr/lib/python3/dist-packages/urllib3/connection.py", line 171, in _new_conn
+    raise NewConnectionError(
+urllib3.exceptions.NewConnectionError: <urllib3.connection.VerifiedHTTPSConnection object at 0x7f52364e9be0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/requests/adapters.py", line 439, in send
+    resp = conn.urlopen(
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 719, in urlopen
+    retries = retries.increment(
+  File "/usr/lib/python3/dist-packages/urllib3/util/retry.py", line 436, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='api.binance.com', port=443): Max retries exceeded with url: /api/v3/exchangeInfo (Caused by NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x7f52364e9be0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/root/saastool2/django/d_trading_bots/../../libs/exception_decor.py", line 35, in wrapper
+    return function(*args, **kwargs)
+  File "/root/saastool2/django/d_trading_bots/../../libs/exchange_lib.py", line 116, in __init__
+    self._ws_api = Binance(key, secret, logger=self._ws_log, rest_api=self._rest_api, **kwargs)
+  File "/root/saastool2/django/d_trading_bots/../../libs/binance_wsclient/binance_wsclient.py", line 34, in __init__
+    BinanceCommon.__init__(self, rest_api=rest_api, ws_manager=ws_manager, logger=logger)
+  File "/root/saastool2/libs/binance_wsclient/binance_common.py", line 216, in __init__
+    self._pair_dict = get_exchange_info(self._ws_manager.EX_INFO_API_URL)
+  File "/root/saastool2/libs/binance_wsclient/binance_common.py", line 34, in get_exchange_info
+    res = requests.get(ex_info_api_url)
+  File "/usr/lib/python3/dist-packages/requests/api.py", line 75, in get
+    return request('get', url, params=params, **kwargs)
+  File "/usr/lib/python3/dist-packages/requests/api.py", line 60, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/usr/lib/python3/dist-packages/requests/sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/usr/lib/python3/dist-packages/requests/sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "/usr/lib/python3/dist-packages/requests/adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='api.binance.com', port=443): Max retries exceeded with url: /api/v3/exchangeInfo (Caused by NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x7f52364e9be0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+2020-12-16 01:48:30,198 - example_logger - ERROR - There was an exception in  __init__
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/urllib3/connection.py", line 159, in _new_conn
+    conn = connection.create_connection(
+  File "/usr/lib/python3/dist-packages/urllib3/util/connection.py", line 61, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+  File "/usr/lib/python3.8/socket.py", line 918, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 665, in urlopen
+    httplib_response = self._make_request(
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 376, in _make_request
+    self._validate_conn(conn)
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 996, in _validate_conn
+    conn.connect()
+  File "/usr/lib/python3/dist-packages/urllib3/connection.py", line 314, in connect
+    conn = self._new_conn()
+  File "/usr/lib/python3/dist-packages/urllib3/connection.py", line 171, in _new_conn
+    raise NewConnectionError(
+urllib3.exceptions.NewConnectionError: <urllib3.connection.VerifiedHTTPSConnection object at 0x7f76b88188e0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/requests/adapters.py", line 439, in send
+    resp = conn.urlopen(
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 719, in urlopen
+    retries = retries.increment(
+  File "/usr/lib/python3/dist-packages/urllib3/util/retry.py", line 436, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='api.binance.com', port=443): Max retries exceeded with url: /api/v3/exchangeInfo (Caused by NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x7f76b88188e0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/root/saastool2/django/d_trading_bots/../../libs/exception_decor.py", line 35, in wrapper
+    return function(*args, **kwargs)
+  File "/root/saastool2/django/d_trading_bots/../../libs/exchange_lib.py", line 116, in __init__
+    self._ws_api = Binance(key, secret, logger=self._ws_log, rest_api=self._rest_api, **kwargs)
+  File "/root/saastool2/django/d_trading_bots/../../libs/binance_wsclient/binance_wsclient.py", line 34, in __init__
+    BinanceCommon.__init__(self, rest_api=rest_api, ws_manager=ws_manager, logger=logger)
+  File "/root/saastool2/libs/binance_wsclient/binance_common.py", line 216, in __init__
+    self._pair_dict = get_exchange_info(self._ws_manager.EX_INFO_API_URL)
+  File "/root/saastool2/libs/binance_wsclient/binance_common.py", line 34, in get_exchange_info
+    res = requests.get(ex_info_api_url)
+  File "/usr/lib/python3/dist-packages/requests/api.py", line 75, in get
+    return request('get', url, params=params, **kwargs)
+  File "/usr/lib/python3/dist-packages/requests/api.py", line 60, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/usr/lib/python3/dist-packages/requests/sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/usr/lib/python3/dist-packages/requests/sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "/usr/lib/python3/dist-packages/requests/adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='api.binance.com', port=443): Max retries exceeded with url: /api/v3/exchangeInfo (Caused by NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x7f76b88188e0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+2020-12-16 10:42:26,015 - example_logger - ERROR - There was an exception in  __init__
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/urllib3/connection.py", line 159, in _new_conn
+    conn = connection.create_connection(
+  File "/usr/lib/python3/dist-packages/urllib3/util/connection.py", line 61, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+  File "/usr/lib/python3.8/socket.py", line 918, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 665, in urlopen
+    httplib_response = self._make_request(
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 376, in _make_request
+    self._validate_conn(conn)
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 996, in _validate_conn
+    conn.connect()
+  File "/usr/lib/python3/dist-packages/urllib3/connection.py", line 314, in connect
+    conn = self._new_conn()
+  File "/usr/lib/python3/dist-packages/urllib3/connection.py", line 171, in _new_conn
+    raise NewConnectionError(
+urllib3.exceptions.NewConnectionError: <urllib3.connection.VerifiedHTTPSConnection object at 0x7f65dfdacc70>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/requests/adapters.py", line 439, in send
+    resp = conn.urlopen(
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 719, in urlopen
+    retries = retries.increment(
+  File "/usr/lib/python3/dist-packages/urllib3/util/retry.py", line 436, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='api.binance.com', port=443): Max retries exceeded with url: /api/v3/exchangeInfo (Caused by NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x7f65dfdacc70>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/root/saastool2/django/d_trading_bots/../../libs/exception_decor.py", line 35, in wrapper
+    return function(*args, **kwargs)
+  File "/root/saastool2/django/d_trading_bots/../../libs/exchange_lib.py", line 117, in __init__
+    self._ws_api = Binance(key, secret, logger=self._ws_log, rest_api=self._rest_api, **kwargs)
+  File "/root/saastool2/django/d_trading_bots/../../libs/binance_wsclient/binance_wsclient.py", line 34, in __init__
+    BinanceCommon.__init__(self, rest_api=rest_api, ws_manager=ws_manager, logger=logger)
+  File "/root/saastool2/libs/binance_wsclient/binance_common.py", line 216, in __init__
+    self._pair_dict = get_exchange_info(self._ws_manager.EX_INFO_API_URL)
+  File "/root/saastool2/libs/binance_wsclient/binance_common.py", line 34, in get_exchange_info
+    res = requests.get(ex_info_api_url)
+  File "/usr/lib/python3/dist-packages/requests/api.py", line 75, in get
+    return request('get', url, params=params, **kwargs)
+  File "/usr/lib/python3/dist-packages/requests/api.py", line 60, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/usr/lib/python3/dist-packages/requests/sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/usr/lib/python3/dist-packages/requests/sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "/usr/lib/python3/dist-packages/requests/adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='api.binance.com', port=443): Max retries exceeded with url: /api/v3/exchangeInfo (Caused by NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x7f65dfdacc70>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+2020-12-19 15:20:51,834 - example_logger - ERROR - There was an exception in  __init__
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/urllib3/connection.py", line 159, in _new_conn
+    conn = connection.create_connection(
+  File "/usr/lib/python3/dist-packages/urllib3/util/connection.py", line 61, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+  File "/usr/lib/python3.8/socket.py", line 918, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 665, in urlopen
+    httplib_response = self._make_request(
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 376, in _make_request
+    self._validate_conn(conn)
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 996, in _validate_conn
+    conn.connect()
+  File "/usr/lib/python3/dist-packages/urllib3/connection.py", line 314, in connect
+    conn = self._new_conn()
+  File "/usr/lib/python3/dist-packages/urllib3/connection.py", line 171, in _new_conn
+    raise NewConnectionError(
+urllib3.exceptions.NewConnectionError: <urllib3.connection.VerifiedHTTPSConnection object at 0x7f2595ea0b80>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/requests/adapters.py", line 439, in send
+    resp = conn.urlopen(
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 719, in urlopen
+    retries = retries.increment(
+  File "/usr/lib/python3/dist-packages/urllib3/util/retry.py", line 436, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='api.binance.com', port=443): Max retries exceeded with url: /api/v3/exchangeInfo (Caused by NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x7f2595ea0b80>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/root/saastool2/django/d_trading_bots/../../libs/exception_decor.py", line 35, in wrapper
+    return function(*args, **kwargs)
+  File "/root/saastool2/django/d_trading_bots/../../libs/exchange_lib.py", line 125, in __init__
+    self._ws_api = Binance(key, secret, logger=self._ws_log, rest_api=self._rest_api, **kwargs)
+  File "/root/saastool2/django/d_trading_bots/../../libs/binance_wsclient/binance_wsclient.py", line 34, in __init__
+    BinanceCommon.__init__(self, rest_api=rest_api, ws_manager=ws_manager, logger=logger)
+  File "/root/saastool2/libs/binance_wsclient/binance_common.py", line 216, in __init__
+    self._pair_dict = get_exchange_info(self._ws_manager.EX_INFO_API_URL)
+  File "/root/saastool2/libs/binance_wsclient/binance_common.py", line 34, in get_exchange_info
+    res = requests.get(ex_info_api_url)
+  File "/usr/lib/python3/dist-packages/requests/api.py", line 75, in get
+    return request('get', url, params=params, **kwargs)
+  File "/usr/lib/python3/dist-packages/requests/api.py", line 60, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/usr/lib/python3/dist-packages/requests/sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/usr/lib/python3/dist-packages/requests/sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "/usr/lib/python3/dist-packages/requests/adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='api.binance.com', port=443): Max retries exceeded with url: /api/v3/exchangeInfo (Caused by NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x7f2595ea0b80>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+2020-12-19 15:30:16,614 - example_logger - ERROR - There was an exception in  __init__
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/urllib3/connection.py", line 159, in _new_conn
+    conn = connection.create_connection(
+  File "/usr/lib/python3/dist-packages/urllib3/util/connection.py", line 61, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+  File "/usr/lib/python3.8/socket.py", line 918, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 665, in urlopen
+    httplib_response = self._make_request(
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 376, in _make_request
+    self._validate_conn(conn)
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 996, in _validate_conn
+    conn.connect()
+  File "/usr/lib/python3/dist-packages/urllib3/connection.py", line 314, in connect
+    conn = self._new_conn()
+  File "/usr/lib/python3/dist-packages/urllib3/connection.py", line 171, in _new_conn
+    raise NewConnectionError(
+urllib3.exceptions.NewConnectionError: <urllib3.connection.VerifiedHTTPSConnection object at 0x7f45edcb72b0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/requests/adapters.py", line 439, in send
+    resp = conn.urlopen(
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 719, in urlopen
+    retries = retries.increment(
+  File "/usr/lib/python3/dist-packages/urllib3/util/retry.py", line 436, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='api.binance.com', port=443): Max retries exceeded with url: /api/v3/exchangeInfo (Caused by NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x7f45edcb72b0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/root/saastool2/django/d_trading_bots/../../libs/exception_decor.py", line 35, in wrapper
+    return function(*args, **kwargs)
+  File "/root/saastool2/django/d_trading_bots/../../libs/exchange_lib.py", line 125, in __init__
+    self._ws_api = Binance(key, secret, logger=self._ws_log, rest_api=self._rest_api, **kwargs)
+  File "/root/saastool2/django/d_trading_bots/../../libs/binance_wsclient/binance_wsclient.py", line 34, in __init__
+    BinanceCommon.__init__(self, rest_api=rest_api, ws_manager=ws_manager, logger=logger)
+  File "/root/saastool2/libs/binance_wsclient/binance_common.py", line 216, in __init__
+    self._pair_dict = get_exchange_info(self._ws_manager.EX_INFO_API_URL)
+  File "/root/saastool2/libs/binance_wsclient/binance_common.py", line 34, in get_exchange_info
+    res = requests.get(ex_info_api_url)
+  File "/usr/lib/python3/dist-packages/requests/api.py", line 75, in get
+    return request('get', url, params=params, **kwargs)
+  File "/usr/lib/python3/dist-packages/requests/api.py", line 60, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/usr/lib/python3/dist-packages/requests/sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/usr/lib/python3/dist-packages/requests/sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "/usr/lib/python3/dist-packages/requests/adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='api.binance.com', port=443): Max retries exceeded with url: /api/v3/exchangeInfo (Caused by NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x7f45edcb72b0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+2020-12-19 15:32:54,201 - example_logger - ERROR - There was an exception in  __init__
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/urllib3/connection.py", line 159, in _new_conn
+    conn = connection.create_connection(
+  File "/usr/lib/python3/dist-packages/urllib3/util/connection.py", line 61, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+  File "/usr/lib/python3.8/socket.py", line 918, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 665, in urlopen
+    httplib_response = self._make_request(
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 376, in _make_request
+    self._validate_conn(conn)
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 996, in _validate_conn
+    conn.connect()
+  File "/usr/lib/python3/dist-packages/urllib3/connection.py", line 314, in connect
+    conn = self._new_conn()
+  File "/usr/lib/python3/dist-packages/urllib3/connection.py", line 171, in _new_conn
+    raise NewConnectionError(
+urllib3.exceptions.NewConnectionError: <urllib3.connection.VerifiedHTTPSConnection object at 0x7f45eddda1c0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/requests/adapters.py", line 439, in send
+    resp = conn.urlopen(
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 719, in urlopen
+    retries = retries.increment(
+  File "/usr/lib/python3/dist-packages/urllib3/util/retry.py", line 436, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='api.binance.com', port=443): Max retries exceeded with url: /api/v3/exchangeInfo (Caused by NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x7f45eddda1c0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/root/saastool2/django/d_trading_bots/../../libs/exception_decor.py", line 35, in wrapper
+    return function(*args, **kwargs)
+  File "/root/saastool2/django/d_trading_bots/../../libs/exchange_lib.py", line 125, in __init__
+    self._ws_api = Binance(key, secret, logger=self._ws_log, rest_api=self._rest_api, **kwargs)
+  File "/root/saastool2/django/d_trading_bots/../../libs/binance_wsclient/binance_wsclient.py", line 34, in __init__
+    BinanceCommon.__init__(self, rest_api=rest_api, ws_manager=ws_manager, logger=logger)
+  File "/root/saastool2/libs/binance_wsclient/binance_common.py", line 216, in __init__
+    self._pair_dict = get_exchange_info(self._ws_manager.EX_INFO_API_URL)
+  File "/root/saastool2/libs/binance_wsclient/binance_common.py", line 34, in get_exchange_info
+    res = requests.get(ex_info_api_url)
+  File "/usr/lib/python3/dist-packages/requests/api.py", line 75, in get
+    return request('get', url, params=params, **kwargs)
+  File "/usr/lib/python3/dist-packages/requests/api.py", line 60, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/usr/lib/python3/dist-packages/requests/sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/usr/lib/python3/dist-packages/requests/sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "/usr/lib/python3/dist-packages/requests/adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='api.binance.com', port=443): Max retries exceeded with url: /api/v3/exchangeInfo (Caused by NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x7f45eddda1c0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+2020-12-23 10:03:53,464 - example_logger - ERROR - There was an exception in  __init__
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/urllib3/connection.py", line 159, in _new_conn
+    conn = connection.create_connection(
+  File "/usr/lib/python3/dist-packages/urllib3/util/connection.py", line 61, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+  File "/usr/lib/python3.8/socket.py", line 918, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 665, in urlopen
+    httplib_response = self._make_request(
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 376, in _make_request
+    self._validate_conn(conn)
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 996, in _validate_conn
+    conn.connect()
+  File "/usr/lib/python3/dist-packages/urllib3/connection.py", line 314, in connect
+    conn = self._new_conn()
+  File "/usr/lib/python3/dist-packages/urllib3/connection.py", line 171, in _new_conn
+    raise NewConnectionError(
+urllib3.exceptions.NewConnectionError: <urllib3.connection.VerifiedHTTPSConnection object at 0x7f1787a16f40>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/requests/adapters.py", line 439, in send
+    resp = conn.urlopen(
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 719, in urlopen
+    retries = retries.increment(
+  File "/usr/lib/python3/dist-packages/urllib3/util/retry.py", line 436, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='api.binance.com', port=443): Max retries exceeded with url: /api/v3/exchangeInfo (Caused by NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x7f1787a16f40>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/root/saastool2/saastool2/django/d_trading_bots/../../libs/exception_decor.py", line 35, in wrapper
+    return function(*args, **kwargs)
+  File "/root/saastool2/saastool2/django/d_trading_bots/../../libs/exchange_lib.py", line 125, in __init__
+    self._ws_api = Binance(key, secret, logger=self._ws_log, rest_api=self._rest_api, **kwargs)
+  File "/root/saastool2/saastool2/django/d_trading_bots/../../libs/binance_wsclient/binance_wsclient.py", line 34, in __init__
+    BinanceCommon.__init__(self, rest_api=rest_api, ws_manager=ws_manager, logger=logger)
+  File "/root/saastool2/saastool2/libs/binance_wsclient/binance_common.py", line 216, in __init__
+    self._pair_dict = get_exchange_info(self._ws_manager.EX_INFO_API_URL)
+  File "/root/saastool2/saastool2/libs/binance_wsclient/binance_common.py", line 34, in get_exchange_info
+    res = requests.get(ex_info_api_url)
+  File "/usr/lib/python3/dist-packages/requests/api.py", line 75, in get
+    return request('get', url, params=params, **kwargs)
+  File "/usr/lib/python3/dist-packages/requests/api.py", line 60, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/usr/lib/python3/dist-packages/requests/sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/usr/lib/python3/dist-packages/requests/sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "/usr/lib/python3/dist-packages/requests/adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='api.binance.com', port=443): Max retries exceeded with url: /api/v3/exchangeInfo (Caused by NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x7f1787a16f40>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+2020-12-26 20:47:46,355 - example_logger - ERROR - There was an exception in  __init__
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/urllib3/connection.py", line 159, in _new_conn
+    conn = connection.create_connection(
+  File "/usr/lib/python3/dist-packages/urllib3/util/connection.py", line 61, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+  File "/usr/lib/python3.8/socket.py", line 918, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 665, in urlopen
+    httplib_response = self._make_request(
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 376, in _make_request
+    self._validate_conn(conn)
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 996, in _validate_conn
+    conn.connect()
+  File "/usr/lib/python3/dist-packages/urllib3/connection.py", line 314, in connect
+    conn = self._new_conn()
+  File "/usr/lib/python3/dist-packages/urllib3/connection.py", line 171, in _new_conn
+    raise NewConnectionError(
+urllib3.exceptions.NewConnectionError: <urllib3.connection.VerifiedHTTPSConnection object at 0x7fa8d63f21c0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/requests/adapters.py", line 439, in send
+    resp = conn.urlopen(
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 719, in urlopen
+    retries = retries.increment(
+  File "/usr/lib/python3/dist-packages/urllib3/util/retry.py", line 436, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='api.binance.com', port=443): Max retries exceeded with url: /api/v3/exchangeInfo (Caused by NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x7fa8d63f21c0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/root/saastool2/django/d_trading_bots/../../libs/exception_decor.py", line 35, in wrapper
+    return function(*args, **kwargs)
+  File "/root/saastool2/django/d_trading_bots/../../libs/exchange_lib.py", line 125, in __init__
+    self._ws_api = Binance(key, secret, logger=self._ws_log, rest_api=self._rest_api, **kwargs)
+  File "/root/saastool2/django/d_trading_bots/../../libs/binance_wsclient/binance_wsclient.py", line 34, in __init__
+    BinanceCommon.__init__(self, rest_api=rest_api, ws_manager=ws_manager, logger=logger)
+  File "/root/saastool2/libs/binance_wsclient/binance_common.py", line 216, in __init__
+    self._pair_dict = get_exchange_info(self._ws_manager.EX_INFO_API_URL)
+  File "/root/saastool2/libs/binance_wsclient/binance_common.py", line 34, in get_exchange_info
+    res = requests.get(ex_info_api_url)
+  File "/usr/lib/python3/dist-packages/requests/api.py", line 75, in get
+    return request('get', url, params=params, **kwargs)
+  File "/usr/lib/python3/dist-packages/requests/api.py", line 60, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/usr/lib/python3/dist-packages/requests/sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/usr/lib/python3/dist-packages/requests/sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "/usr/lib/python3/dist-packages/requests/adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='api.binance.com', port=443): Max retries exceeded with url: /api/v3/exchangeInfo (Caused by NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x7fa8d63f21c0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+2020-12-27 12:17:50,058 - example_logger - ERROR - There was an exception in  __init__
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/urllib3/connection.py", line 159, in _new_conn
+    conn = connection.create_connection(
+  File "/usr/lib/python3/dist-packages/urllib3/util/connection.py", line 61, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+  File "/usr/lib/python3.8/socket.py", line 918, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 665, in urlopen
+    httplib_response = self._make_request(
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 376, in _make_request
+    self._validate_conn(conn)
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 996, in _validate_conn
+    conn.connect()
+  File "/usr/lib/python3/dist-packages/urllib3/connection.py", line 314, in connect
+    conn = self._new_conn()
+  File "/usr/lib/python3/dist-packages/urllib3/connection.py", line 171, in _new_conn
+    raise NewConnectionError(
+urllib3.exceptions.NewConnectionError: <urllib3.connection.VerifiedHTTPSConnection object at 0x7f7e85a82b50>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/requests/adapters.py", line 439, in send
+    resp = conn.urlopen(
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 719, in urlopen
+    retries = retries.increment(
+  File "/usr/lib/python3/dist-packages/urllib3/util/retry.py", line 436, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='api.binance.com', port=443): Max retries exceeded with url: /api/v3/exchangeInfo (Caused by NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x7f7e85a82b50>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/root/saastool2/django/d_trading_bots/../../libs/exception_decor.py", line 35, in wrapper
+    return function(*args, **kwargs)
+  File "/root/saastool2/django/d_trading_bots/../../libs/exchange_lib.py", line 125, in __init__
+    self._ws_api = Binance(key, secret, logger=self._ws_log, rest_api=self._rest_api, **kwargs)
+  File "/root/saastool2/django/d_trading_bots/../../libs/binance_wsclient/binance_wsclient.py", line 34, in __init__
+    BinanceCommon.__init__(self, rest_api=rest_api, ws_manager=ws_manager, logger=logger)
+  File "/root/saastool2/libs/binance_wsclient/binance_common.py", line 216, in __init__
+    self._pair_dict = get_exchange_info(self._ws_manager.EX_INFO_API_URL)
+  File "/root/saastool2/libs/binance_wsclient/binance_common.py", line 34, in get_exchange_info
+    res = requests.get(ex_info_api_url)
+  File "/usr/lib/python3/dist-packages/requests/api.py", line 75, in get
+    return request('get', url, params=params, **kwargs)
+  File "/usr/lib/python3/dist-packages/requests/api.py", line 60, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/usr/lib/python3/dist-packages/requests/sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/usr/lib/python3/dist-packages/requests/sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "/usr/lib/python3/dist-packages/requests/adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='api.binance.com', port=443): Max retries exceeded with url: /api/v3/exchangeInfo (Caused by NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x7f7e85a82b50>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+2021-01-06 16:31:31,190 - example_logger - ERROR - There was an exception in  invoke_average_order
+Traceback (most recent call last):
+  File "/root/saas_tools/django/bs_sb_continuously_tool/../../libs/exception_decor.py", line 35, in wrapper
+    return function(*args, **kwargs)
+  File "./avg_tool/consumers.py", line 94, in invoke_average_order
+    bot.avg_order(web_input)
+  File "/root/saas_tools/django/bs_sb_continuously_tool/../../bots/clear_order_bot.py", line 141, in avg_order
+    clear_order_inserted = sql_clear_order_bot(order_info,self._own_name,self._ex_id,self._api_name,self._pair,self._side,self._price_type,self._signal,self._uuid)
+AttributeError: 'ClearOrderBot' object has no attribute '_price_type'
+2021-01-06 17:13:05,221 - example_logger - ERROR - There was an exception in  invoke_average_order
+Traceback (most recent call last):
+  File "/root/saas_tools/django/bs_sb_continuously_tool/../../libs/exception_decor.py", line 35, in wrapper
+    return function(*args, **kwargs)
+  File "./avg_tool/consumers.py", line 94, in invoke_average_order
+    bot.avg_order(web_input)
+  File "/root/saas_tools/django/bs_sb_continuously_tool/../../bots/clear_order_bot.py", line 141, in avg_order
+    clear_order_inserted = sql_clear_order_bot(order_info,self._own_name,self._ex_id,self._api_name,self._pair,self._side,self._price_type,self._signal,self._uuid)
+AttributeError: 'ClearOrderBot' object has no attribute '_price_type'
+2021-01-06 17:13:09,635 - example_logger - ERROR - There was an exception in  invoke_average_order
+Traceback (most recent call last):
+  File "/root/saas_tools/django/bs_sb_continuously_tool/../../libs/exception_decor.py", line 35, in wrapper
+    return function(*args, **kwargs)
+  File "./avg_tool/consumers.py", line 94, in invoke_average_order
+    bot.avg_order(web_input)
+  File "/root/saas_tools/django/bs_sb_continuously_tool/../../bots/clear_order_bot.py", line 141, in avg_order
+    clear_order_inserted = sql_clear_order_bot(order_info,self._own_name,self._ex_id,self._api_name,self._pair,self._side,self._price_type,self._signal,self._uuid)
+AttributeError: 'ClearOrderBot' object has no attribute '_price_type'

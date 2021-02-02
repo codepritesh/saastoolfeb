@@ -1,0 +1,12 @@
+[Unit]
+Description=TradingBot - Django web service
+After=network.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=<abs-path-to-repo>/django/d_app_start.sh start <port>
+ExecStop=<abs-path-to-repo>/django/d_app_start.sh stop <port>
+
+[Install]
+WantedBy=multi-user.target

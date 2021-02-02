@@ -1,0 +1,73 @@
+{% extends 'base_empty.html' %}
+{% block title %}PNL Tracking{% endblock %}
+{% block botUrl %}
+    <li class="nav-item">
+        <a class="nav-link active" href="/pnl-tracking">PNL Tracking</a>
+    </li>
+    <li>
+        <a class="nav-link" href="/manual-setting">Manual Setting</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/manual-add-pnl">Manual Add PNL</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/monitor-link">Monitor Bot Running</a>
+    </li>
+{#    <li class="nav-item">#}
+{#        <a class="nav-link" href="/add-exception">PNL Add Exception</a>#}
+{#    </li>#}
+{% endblock %}
+{% block h_common %}
+    <style>
+        th, td {
+            width: 300px;
+        }
+    </style>
+{% endblock %}
+{% block v_input %}
+    <div class="form-row value-row">
+        {% include "components/ex_change_component.html" with n_col=2 label='Exchange' value=data.ex_id %}
+        {% include "components/apis_dropdown_component.html" with n_col=2 label='Account' id='api_name' apis=apis %}
+        <div class="form-group col-md-4">
+            <label for="secret-key" class="text-bold">Comment</label>
+            <textarea class="form-control" id="comment"
+                      rows="1"></textarea>
+        </div>
+        <div class="form-group col-md-2">
+            <label for="secret-key" class="text-bold">&nbsp;</label>
+            <button id="btn-update" type="button" class="btn bg-success">Update</button>
+        </div>
+    </div>
+    <div class="form-row">
+
+    </div>
+{% endblock %}
+{% block another_btn %}
+    <section class="card" style="margin: 20px">
+        <div class="card-header">
+            History Query Condition
+        </div>
+        <div class="card-body">
+            <div class="form-padding-left">
+                <div class="form-row value-row">
+                    {% include "components/form_input_component.html" with n_col=2 label='From Date' id='from_date' v_def='2020-07-07' apis=data.from_date %}
+                    {% include "components/form_input_component.html" with n_col=2 label='To Date' id='to_date' v_def='2020-07-08' apis=data.to_date %}
+                    <div class="form-group col-md-2">
+                        <label for="secret-key" class="text-bold">&nbsp;</label>
+                        <button id="btn-get-history" type="button" class="btn bg-warning">Get History</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block content %}
+    <section id="area_loading">
+        {% include "components/spinner_component.html" %}
+    </section>
+    <div class="container-fluid">
+        <div id='table-container' class="overflow-auto"></div>
+        <div id="pnl-area" class="overflow-auto"></div>
+    </div>
+{% endblock %}

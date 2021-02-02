@@ -1,0 +1,9 @@
+<div class="form-group col-md-{{n_col}}" {% if id_container %} id="{{ id_container }}" {% endif %}>
+    <label for="{{id}}" class="text-bold">{% if label %} {{ label }} {% else %}&nbsp; {% endif %}</label>
+    <input id={{ id }} type="checkbox" data-toggle="switchbutton" {% if value == True %} checked {% endif %}
+    data-onstyle="success" data-offstyle="danger" {% if dataOff %} data-offlabel="{{ dataOff }}" {% endif %} {% if dataOn %}
+           data-onlabel="{{ dataOn }}" {% endif %} >
+</div>
+
+
+{# {% include "components/swith_btn_component.html" with n_col=2 id='switch' value=data.switch dataOn='Follow Market' dataOff='Not Follow' label='Action' %}#}

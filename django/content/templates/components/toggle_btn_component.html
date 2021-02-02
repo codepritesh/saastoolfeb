@@ -1,0 +1,10 @@
+{# args : n_col, label, id,  is_disable, #}
+<div class="form-group col-md-{{ n_col }}">
+    <label for="{{ id }}" class="text-bold">{{ label }}</label>
+    <label class="switch form-control" id="{{ id }}">
+        <input type="checkbox" id="cb_{{ id }}" {% if is_disable %} disabled {% endif %} {% if data %}
+            {% if value == True %} checked {% endif %} {% else %}
+        {% endif %}>
+        <span class="slider round"></span>
+    </label>
+</div>

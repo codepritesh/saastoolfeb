@@ -1,0 +1,25 @@
+{% extends "login.html" %}
+{%load static%}
+{% load bootstrap4 %}
+{% load i18n %}
+{% block content %}
+<style>label{font-size:13px;color:#888; display:none;}.card{width:550px;}.form-control{border-left:1px solid #3b3939;}</style>
+<div class="card">
+			<div class="card-header">
+				<h3><img src="{% static 'images/logo.png' %}" alt="AdminLTE Logo" class="brand-image"  height="60"><br/>{% trans 'Create An Account' %}</h3>
+
+			</div>
+			
+			<div class="card-body">
+    <form method="post">
+
+        {% csrf_token %}
+        {% bootstrap_form form %}
+
+        <button class="btn btn-success">{% trans 'Create' %}</button>
+		 <a href="{% url 'login' %}" class="btn float-right btn-primary">{% trans 'Log in' %}</a>
+    </form>
+    
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,76 @@
+{% extends "adminLTE.html" %}
+{% block contentContainer %}
+    <section id="content">
+        <section>
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <div class="navbar-collapse">
+                    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">Home</a>
+                        </li>
+                        {% block botUrl %}
+
+                        {% endblock %}
+                    </ul>
+                </div>
+            </nav>
+        </section>
+        <section class="form">
+            <div class="card">
+                <div class="card-header">Base Input</div>
+                <div class="card-body">
+                    <div class="form-row value-row">
+                        {% include "components/ex_change_component.html" with n_col=2 label='Exchange' %}
+                        {% include "components/form_input_component.html" with n_col=2 label='Pair' id='pair' v_def='BTC/USDT' %}
+                        {% include "components/form_input_component.html" with n_col=2 label='Amount' id='amount' v_def='1' %}
+                        {% include "components/form_input_component.html" with n_col=2 label='Fee' id='fee' v_def='0.00015' value=data.pair %}
+                        {% include "components/form_input_component.html" with n_col=2 label='Max Order' id='max_order' v_def='5' value=data.max_order %}
+                    </div>
+                    {% block v_input %} {% endblock %}
+                    <div class="card">
+                        <div class="card-header">Condition Finish</div>
+                        <div class="card-body">
+                            <div class="form-row">
+                                {% include "components/toggle_btn_checked_component.html" with n_col=2 label='Using Time Out' id='using_time_out' value=data.cb_using_time_out %}
+                                {% include "components/form_input_component.html" with n_col=2 label='Time Start' id='time_start' v_def='2020:05:01 00:00:00' %}
+                                {% include "components/form_input_component.html" with n_col=2 label='Duration(h)' id='duration' v_def='12' %}
+                                {% include "components/form_input_component.html" with n_col=2 label='Profit Desire (Quote curr)' id='profit_desire' v_def='100' %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">Asset Balance</div>
+                        <div class="card-body">
+                            <div class="form-row">
+                                {% include "components/form_input_component.html" with n_col=2 label='Base Currency' id='base_curr' v_def='100' %}
+                                {% include "components/form_input_component.html" with n_col=2 label='Quote Currency' id='quote_curr' v_def='3' %}
+                            </div>
+                        </div>
+                    </div>
+                    {% block another_btn %} {% endblock %}
+                    <div class="row justify-content-around">
+                        {% block v_action %}
+                            <button id="btn-download-backtest" type="button" class="btn btn-danger col-md-2">Download
+                                Data Backtest
+                            </button>
+                        {% endblock %}
+                    </div>
+                </div>
+            </div>
+        </section>
+        {% block another_block %} {% endblock %}
+        <section id="eror-area">
+            <div class="card">
+                <div class="card-header text-bold alert-danger">
+                    Warning
+                </div>
+                <div class="card-body">
+                    <span id="error-lable" class="text-danger">&nbsp;</span>
+                </div>
+            </div>
+        </section>
+        <section id="area_loading">
+            {% include "components/spinner_component.html" %}
+        </section>
+    </section>
+{% endblock %}

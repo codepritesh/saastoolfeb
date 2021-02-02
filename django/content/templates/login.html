@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+{%load static%}
+{% load bootstrap4 %}
+{% load i18n %}
+
+{% get_current_language as language_code %}
+<html>
+<head>
+	<title>trading</title>
+    <link rel="shortcut icon" href="{% static 'favicon.ico' %}">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+<style>
+	body{
+	 background-image: url('{% static '/images/crypto-trading.png' %}');
+	}
+	body::before {
+    content: "";
+	position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color:#000;
+	opacity:0.3;
+}
+.card-header h3{font-size: 20px;
+text-align: center;
+color: #9b8f8f;
+border-bottom: 1px solid #333;
+padding-bottom: 10px; text-transform:uppercase;}
+ul{width:100%; float:left; margin-left:0px; padding-left:0px;}
+ul li{list-style:none;width:auto; font-size:12px; float:left;}
+</style>
+</head>
+
+<body>
+{% bootstrap_messages %}
+<div class="container">
+	<div class="d-flex justify-content-left h-100">
+	{% block content %}
+		<div class="card">
+			<div class="card-header">
+				<h3><img src="{% static 'images/logo.png' %}" alt="AdminLTE Logo" class="brand-image"  height="60"><br/>Sign In</h3>
+
+			</div>
+			
+			<div class="card-body">
+				<form method="post" action="/login/">
+						{% csrf_token %}
+					<div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-user"></i></span>
+						</div>
+						<input type="text" class="form-control" name="username" placeholder="Username" required>
+
+					</div>
+					<div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-key"></i></span>
+						</div>
+						<input type="password" class="form-control" name="password" placeholder="Password" required>
+					</div>
+					 <div class="checkbox mb-3 text-white float-center">
+            			<label>
+                			<input type="checkbox" value="remember-me"> Remember me
+            			</label>
+       				 </div>
+					  <div class="form-group">
+						<input type="submit" value="Login" class="btn  btn-success">
+						    <a href="/accounts/sign-up" class="btn float-right btn-primary">
+                                       Signup
+                            </a>
+						
+					  </div>
+					  
+
+					        
+					             
+
+					
+
+				</form>
+				<ul>
+        <li>
+            <a href="{% url 'accounts:restore_password' %}">Forgot password?</a>
+        </li>
+        <li style="float:right;">
+            <a href="{% url 'accounts:remind_username' %}">Forgot username?</a>
+        </li>
+        <li style="margin-top:10px; display:inline-block; text-align:center;">
+            <a href="{% url 'accounts:resend_activation_code' %}" style="color:#ecb85e; ">Resend an activation code.</a>
+        </li>
+       </ul>
+			</div>
+			
+				
+			
+		</div>
+		{% endblock %}
+	</div>
+</div>
+<script src="{% static 'vendor/jquery/jquery-3.4.1.min.js' %}"></script>
+<script src="{% static 'vendor/popper/popper.min.js' %}"></script>
+<script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+
+<script src="{% static 'js/ie10-viewport-bug-workaround.js' %}"></script>
+</body>
+</html>

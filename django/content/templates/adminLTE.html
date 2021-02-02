@@ -1,0 +1,464 @@
+
+{% load bootstrap4 %}
+<!DOCTYPE html>
+<html>
+<head>
+    {% load static %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="shortcut icon" href="{% static 'favicon.ico' %}">
+    {% block head %}
+        <title>{% block title %}{% endblock %} Trading Tools</title>
+    {% endblock %}
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Font Awesome -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href=" {% static 'css/adminlte.min.css' %}">
+    <link rel="stylesheet" href=" {% static 'css/switch_button_bootstrap/bootstrap-switch-button.min.css' %}">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+	 <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+{% block mycss %} {% endblock mycss %} 
+</head>
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+    <!-- Navbar -->
+    <nav class="main-header navbar navbar-expand navbar-dark navbar-light">
+        <!-- Left navbar links -->
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+            </li>
+{#            <li class="nav-item d-none d-sm-inline-block">#}
+{#                <input id="is_production" type="checkbox" data-toggle="switchbutton" checked data-onstyle="success" data-offstyle="danger" data-offlabel="DEBUG" data-onlabel="BOT"  >#}
+{#            </li>#}
+            <li class="nav-item d-none d-sm-inline-block">
+                <a href="/" class="nav-link">Home</a>
+            </li>
+            {% block botUrl %}
+
+            {% endblock %}
+        </ul>
+
+        <!-- SEARCH FORM -->
+        <form class="form-inline ml-3" style="display:none;">
+            <div class="input-group input-group-sm">
+                <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+                <div class="input-group-append">
+                    <button class="btn btn-navbar" type="submit">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+
+
+
+        <!-- Right navbar links -->
+        
+        <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+                <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
+                    <i>{{ user }}</i>
+                </a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link" data-toggle="dropdown" href="#">
+                    <i class="fa fa-cogs" aria-hidden="true"></i>
+                </a>
+
+                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                    {% comment %}
+                    <span class="dropdown-item dropdown-header">User Setting</span>
+                    <div class="dropdown-divider"></div>
+                    <a href="/admin/" class="dropdown-item">
+                        <i class="fas fa-tools mr-2"></i>Add Account
+                        <span class="float-right text-muted text-sm">Admin</span>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="/admin/setup_apikey/apikey/add/" class="dropdown-item">
+                        <i class="fas fa-users mr-2"></i> Add API
+                        <span class="float-right text-muted text-sm">Admin</span>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="/addapiuser" class="dropdown-item">
+                        <i class="fas fa-users mr-2"></i> Add API
+                        <span class="float-right text-muted text-sm">{{ user }}</span>
+                    </a>
+                    {% endcomment %}
+                    
+                    <div class="dropdown-divider"></div>
+                    <a href="{% url 'logout' %}" class="dropdown-item">
+                        <i class="fas fa-lock-open mr-2"></i> Logout
+                       
+                    </a>
+
+                </div>
+
+            </li>
+            
+        </ul>
+    </nav>
+    
+    <!-- /.navbar -->
+    <div class="content-wrapper">
+        {% bootstrap_messages %}
+        {% block contentContainer %}
+            <section id="content">
+                <section class="form">
+                    <div class="card">
+                        <div class="card-header"></div>
+                        <div class="card-body">
+                            <div class="form-padding-left">
+                                {% block v_input %} {% endblock %}
+                            </div>
+                            <div class="card-footer">
+                                {% block another_btn %} {% endblock %}
+                                <div class="row justify-content-around">
+                                    {% block v_action %}
+                                        {% if not data %}
+                                            <button id="btn-start-bot" type="button" class="btn btn-primary col-md-2">
+                                                Start Bot
+                                            </button>
+                                        {% endif %}
+                                        {% if resume %}
+                                            <button id="btn-resume-bot" type="button" class="btn btn-primary col-md-2">
+                                                Resume Bot
+                                            </button>
+                                        {% endif %}
+                                        <button id="btn-show-stop-bot" type="button" class="btn btn-danger col-md-2">
+                                                Kill Bot
+                                        </button>
+                                    {% endblock %}
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+                {% block another_block %} {% endblock %}
+
+            </section>
+
+            {% block content %}{% endblock %}
+            <section id="area_loading">
+                {% block area_loading %}
+                {% endblock %}
+            </section>
+            <section id="area_modal">
+                {% include "components/modal_stop_bot_success_component.html" %}
+                {% include "components/modal_confirm_kill_bot.html" %}
+            </section>
+            <section id="eror-area" style="position: absolute; top: 50px; right: 20px; width: 50%">
+            </section>
+        {% endblock %}
+		
+		{% block user_bot_data %} 
+		
+			<section id="content" class="no-padding-top" >
+			<div class="container-fluid">
+				<div  id="socket_table" class="card" style="display:none" >
+				<div class="card-header">Latest Orders</div>
+				
+				{% include "components/bot_trading_socket_data_tab.html" %}
+				
+				</div>
+			</div>
+			</section>
+			{% endblock %}
+			
+    </div>
+    
+    <!-- Main Sidebar Container -->
+    <aside class="main-sidebar sidebar-dark-primary elevation-4" aria-hidden="true">
+		<a href="#" class="brand-link">
+		  <img src="{% static 'images/logo.png' %}" alt="AdminLTE Logo" class="brand-image" >
+		</a>
+        <!-- Sidebar -->
+        <div class="sidebar ">
+            <!-- Sidebar user (optional) -->
+            <div class="user-panel mt-3 pb-3 mb-3 d-flex  btn-group-vertical" style="display:none !important;">
+                <div class="image" >
+                    <img src="{% static 'images/avatar5.png' %}" class="img-circle elevation-2" alt="User Image">
+                </div>
+                <div class="btn-group-vertical">
+                <div class="info">
+                    <a class="text-bold" href="#" class="d-block"> {{ user }}</a>
+                    
+                </div>
+
+
+
+
+
+
+
+                 
+                     </div>
+            </div>
+           
+
+            <!-- Sidebar Menu -->
+            <nav class="mt-2">
+
+                 <!-- Admin  panel -->
+                 {%  if request.user.is_superuser %}
+
+                <ul id="side-menu" class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                    data-accordion="false">
+                    <!-- Add icons to the links using the .nav-icon class
+                         with font-awesome or any other icon font library -->
+                    <li class="nav-item has-treeview active">
+                        <a href="#" class="nav-link ">
+                            <i class="nav-icon fa fa-user-plus"></i>
+                            <p>
+                                Admin Panel
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                       
+                        <ul class="nav nav-treeview">
+                            
+                            
+                            <li class="nav-item">
+                                <a href="{% url 'admin_dashboard_index' %}" class="nav-link">
+                                <i class="far fa-circle nav-icon text-warning"></i>
+                                  <span>All User</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{% url 'user_permission_list' %}" class="nav-link">
+                                <i class="far fa-circle nav-icon text-warning"></i>
+                                  <span>User Permission</span>
+                                </a>
+                            </li>
+                             <li class="nav-item">
+                                <a href="{% url 'admin_allBot_index' %}" class="nav-link">
+                                <i class="far fa-circle nav-icon text-warning"></i>
+                                  <span>All Trade</span>
+                                </a>
+                            </li>
+                            
+                             <li class="nav-item">
+                                <a href="{% url 'user_bot_instances_index' %}" class="nav-link">
+                                <i class="far fa-circle nav-icon text-warning"></i>
+                                  <span>User Bot Instances</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{% url 'user_bot_running_index' %}" class="nav-link">
+                                <i class="far fa-circle nav-icon text-warning"></i>
+                                  <span>User Bot Running</span>
+                                </a>
+                            </li>
+
+                              <li class="nav-item">
+                                <a href="{% url 'user_twofa_dashboard' %}" class="nav-link">
+                                <i class="far fa-circle nav-icon text-warning"></i>
+                                  <span>2FA suport</span>
+                                </a>
+                            </li>
+                           
+                           
+                        </ul>
+                    </li>
+                </ul>
+                {% endif %}
+                 <!-- Admin  panel -->
+
+
+
+
+
+
+                  <!-- user profile panel -->
+                <ul id="side-menu" class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                    data-accordion="false">
+                    <!-- Add icons to the links using the .nav-icon class
+                         with font-awesome or any other icon font library -->
+                    <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fa fa-user-plus"></i>
+                            <p>
+                                User Profile
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                       
+                        <ul class="nav nav-treeview">
+                         <li class="nav-item">
+                                
+                                <a href="{% url 'user_bot_index' %}" class="nav-link">
+                                <i class="far fa-circle nav-icon text-warning"></i>
+                                  <span>Trade Data</span>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                
+                                <a href="{% url 'apikey_list' %}" class="nav-link">
+                                <i class="far fa-circle nav-icon text-warning"></i>
+                                  <span>Add API Key</span>
+                                </a>
+                            </li>
+                            
+                            <li class="nav-item" style="display:none">
+                                <a href="{% url 'accounts:change_profile' %}" class="nav-link">
+                                <i class="far fa-circle nav-icon text-warning"></i>
+                                  <span>Change Profile</span>
+                                </a>
+                            </li>
+                            <li class="nav-item" style="display:none">
+                                <a href="{% url 'accounts:change_email' %}" class="nav-link">
+                                <i class="far fa-circle nav-icon text-warning"></i>
+                                  <span>Change Email</span>
+                                </a>
+                            </li>
+                             <li class="nav-item">
+                                <a href="{% url 'accounts:change_password' %}" class="nav-link">
+                                <i class="far fa-circle nav-icon text-warning"></i>
+                                  <span>Change Password</span>
+                                </a>
+                            </li>
+                             <li class="nav-item" style="display:none">
+                                <a href="{% url 'logout' %}" class="nav-link">
+                                <i class="far fa-circle nav-icon text-warning"></i>
+                                  <span>Log Out</span>
+                                </a>
+                            </li>
+                             <li class="nav-item" style="display:none;">
+                                <a href="{% url 'twoFADash' %}" class="nav-link">
+                                <i class="far fa-circle nav-icon text-warning"></i>
+                                  <span>2FA</span>
+                                </a>
+                            </li>
+                              <li class="nav-item" style="display:block;">
+                                <a href="{% url 'twoFAgoogle' %}" class="nav-link">
+                                <i class="far fa-circle nav-icon text-warning"></i>
+                                  <span>2FA Google Authenticator</span>
+                                </a>
+                            </li>
+                           
+                           
+                           
+                        </ul>
+                    </li>
+                </ul>
+                 <!-- user profile panel -->
+                <ul id="side-menu" class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                    data-accordion="false">
+                    <!-- Add icons to the links using the .nav-icon class
+                         with font-awesome or any other icon font library -->
+                    <li class="nav-item has-treeview menu-open">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-tools"></i>
+                            <p>
+                                support tools
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                        
+                            {% include "components/link_admin_component.html" with refer_bot_count=bot_one ref_to_id='bot_count_one' ref_to='/avg-tool' label='Cancel and Average Tool' %}
+
+                            {% include "components/link_admin_component.html" with refer_bot_count=bot_two ref_to_id='bot_count_two' ref_to='/support-big-amount-bot' label='Support Big Amount Bot' %}
+
+                            {% include "components/link_admin_component.html" with refer_bot_count=bot_three ref_to_id='bot_count_three' ref_to='/support-trailing-stop-bot' label='Support Trailing Stop' %}
+
+                            {% include "components/link_admin_component.html" with refer_bot_count=bot_four ref_to_id='bot_count_four' ref_to='/arb-2way-tool' label='Arb 2way Tool' %}
+
+                            {% include "components/link_admin_component.html" with refer_bot_count=bot_five ref_to_id='bot_count_five'  ref_to='/atr-trailing-stop-bot-tool' label='ATR Trailing Stop Tool' %}
+
+                            {% include "components/link_admin_component.html" with refer_bot_count=bot_six ref_to_id='bot_count_six' ref_to='/two_way_sp_tool' label='Two Way Sp Bot' %}
+
+                            {% include "components/link_admin_component.html" with refer_bot_count=bot_seven ref_to_id='bot_count_seven'  ref_to='/support-multi-box' label='Support Multi Boxes Bot' %}
+
+                            {% include "components/link_admin_component.html" with refer_bot_count=bot_eight ref_to_id='bot_count_eight' ref_to='/bs-sb-continuously-tool' label='BS SB Continuously Tool' %}
+
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            <!-- /.sidebar-menu -->
+        <!-- /.sidebar -->
+			 </div>
+    </aside>
+
+
+
+    <footer class="main-footer">
+      
+        <div class="float-right d-none d-sm-block">
+            <b>Version</b> 0.1
+        </div>
+        <strong>Copyright &copy; 2019-2020 <a href="#">Trading System</a>.</strong> All rights
+        reserved.
+    </footer>
+
+    <!-- Control Sidebar -->
+    {#    <aside class="control-sidebar control-sidebar-dark">#}
+    <!-- Control sidebar content goes here -->
+    {#    </aside>#}
+    <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+<!-- Bootstrap 4 -->
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+<!-- AdminLTE App -->
+<script src=" {% static 'js/adminlte.min.js' %}"></script>
+<!-- AdminLTE for demo purposes -->
+<script type="text/javascript" src="{% static 'js/uuid_v1.js' %}"></script>
+{% block rec_data %}
+    <script>
+        var port = location.port;
+        var ws_define = "{{ ws_define|escapejs }}";
+        var uuid_web = "{{ id|escapejs }}";
+        var apis = "{{ apis|escapejs }}";
+        var data = "{{ data|escapejs }}";
+        var user = "{{ user|escapejs }}";
+        var bot_alias = "{{ bot_alias|escapejs }}";
+        var data_url = "{{ url|escapejs }}";
+
+        if (uuid_web == "") {
+            uuid_web = null;
+        }
+        {% if data %}
+            uuid_web = "{{ data.uuid }}";
+        {% endif %}
+        if (!port) {
+            port = '80';
+        }
+    </script>
+{% endblock %}
+{% block h_common %}
+{% endblock %}
+{% block jsFile %}
+    <script type="text/javascript" src="{% static 'js/csv_convert/jquery.csv.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/csv_convert/jquery.dataTables.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/csv_convert/dataTables.bootstrap.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/csv_convert/csv_to_html_table.js' %}"></script>
+{#    <script type="text/javascript" src="{% static 'js/switch_button_bootstrap/bootstrap-switch-button.min.js' %}"></script>#}
+    <script type="text/javascript" src="{% static 'js/moment.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/common/ws_common.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/common/index.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/common/index_table.js' %}"></script>
+{% endblock %}
+    <script type="text/javascript" src="{% static 'js/switch_button_bootstrap/bootstrap-switch-button.min.js' %}"></script>
+</body>
+</html>
+
+
+
+
+
+
+

@@ -1,0 +1,43 @@
+{% extends 'base_empty.html' %}
+{% block title %}Monitor Link{% endblock %}
+{% block pnl_index %}
+{% endblock %}
+{% block botUrl %}
+    <li class="nav-item">
+        <a class="nav-link" href="/pnl-tracking">PNL Tracking</a>
+    </li>
+    <li>
+        <a class="nav-link" href="/manual-setting">Manual Setting</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/manual-add-pnl">Manual Add PNL</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link active" href="/monitor-link">Monitor Bot Running</a>
+    </li>
+{% endblock %}
+{% block h_common %}
+    <style>
+        th, td {
+            width: 300px;
+        }
+    </style>
+    {% load static %}
+    <script type="text/javascript" src="{% static 'js/common/csv_common.js' %}"></script>
+    <script>
+        var data_url = "{{ url|escapejs }}";
+    </script>
+{% endblock %}
+{% block form_input %}
+{% endblock %}
+{% block v_action %}
+{% endblock %}
+
+{% block content %}
+    <section id="area_loading">
+        {% include "components/spinner_component.html" %}
+    </section>
+    <div class="container-fluid">
+        <div id='table-monitor-link' class="overflow-auto"></div>
+    </div>
+{% endblock %}

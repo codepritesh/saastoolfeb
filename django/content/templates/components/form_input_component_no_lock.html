@@ -1,0 +1,5 @@
+<div class="form-group col-md-{{n_col}}" {% if id_container %} id="{{ id_container }}" {% endif %}>
+    <label for="{{id}}" class="text-bold">{{label}}</label>
+    <input type="text" class="form-control" id="{{id}}"
+           value={% if value %} {{ value }}{% else %} "{{v_def}}" {% endif %}>
+</div>

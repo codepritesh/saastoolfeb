@@ -1,0 +1,74 @@
+{% extends "adminLTE.html" %}
+{% block title %}TOOL SUPPORT AVG, CLEAR, CANCEL ORDER{% endblock %}
+{% block head %}
+  {{ block.super }}
+{% endblock %}
+{% block h_common %}
+  {% load static %}
+  <script type="text/javascript" src="{% static 'js/tool/avg_tool.js' %}"></script>
+{% endblock %}
+{% block botUrl %}
+<li class="nav-item active">
+  <a class="nav-link" href="/avg-tool">TOOL SUPPORT AVG, CLEAR, CANCEL ORDER</a>
+</li>
+    <li class="nav-item">
+        <a class="nav-link" href="/avg-tool/tracking">Tracking</a>
+    </li>
+{% endblock %}
+{% block v_input %}
+<h4>TOOL SUPPORT AVG, CLEAR, CANCEL ORDER</h4>
+<a  href="/avg-tool/HowToUseAvgTool" target="_blank"><p class="text-right" style="color:#ffc107;">How To Use?</p></a>
+    <div class="form-row value-row">
+        {% include "../components/ex_change_component.html" with n_col=2 label='Exchange' value=data.ex_id %}
+        {% include "../components/apis_dropdown_component.html" with n_col=2 label='Account' id='api_name' apis=apis %}
+        {% include "../components/form_input_component.html" with n_col=2 label='Pair' id='pair' v_def='BTC/USDT' value=data.pair %}
+    </div>
+    <div class="form-row">
+        {% include "../components/options_form.html" with n_col=2 label='Side' id='side' options=options_side %}
+        {% include "../components/options_form.html" with n_col=2 label='Price' id='price_type' options=options_price %}
+    </div>
+{% endblock %}
+{% block another_btn %}
+    <div class="card">
+        <div class="card-header">ACTION</div>
+        <div class="card-body">
+            <div class="row justify-content-between" style="margin: 15px 15px">
+        <button id="btn_cancel_order" type="button" class="btn btn-warning col-md-2">Cancel Order
+          </button>
+        <button id="btn_clear_order" type="button" class="btn btn-success col-md-2">Clear Order
+          </button>
+        <button id="btn_avg_order" type="button" class="btn btn-dark col-md-2">Average Order
+        </button>
+    </div>
+        </div>
+    </div>
+{% endblock %}
+{% block v_action %}
+    {% if not data %}
+    {% if bot_one < max_bot_one %}
+
+    <button id="btn-start-bot" type="button" class="btn btn-primary col-md-2">
+        Start Bot
+    </button>
+    {% else %}
+         <button id="max_bot_running" type="button" class="btn btn-primary col-md-2" title="you have maximum bot running to increase your bot instance contact to admin.">
+        Start Bot
+    </button>
+    <h6>you have maximum bot running pls contact to admin to increase bot instance</h6>
+    {% endif %}
+{% endif %}
+{% if resume %}
+    <button id="btn-resume-bot" type="button" class="btn btn-primary col-md-2">
+        Resume Bot
+    </button>
+{% endif %}
+<button id="btn-show-stop-bot" type="button" class="btn btn-danger col-md-2">
+        Kill Bot
+</button>
+
+
+
+{% endblock %}
+{% block content %}
+    {% include "../components/log_and_trade_info_component.html" %}
+{% endblock %}

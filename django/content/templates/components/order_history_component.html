@@ -1,0 +1,82 @@
+<section id="trade-info" class="row">
+    <div class="col-sm-6">
+        <div id="open-order" class=" card no-padding">
+            <div class="card-header text-bold"><span>Open order</span>
+                <div class="input-group-text float-right">
+                    <input id="scroll-cb-open-order" checked type="checkbox"
+                           aria-label="Checkbox for following text input">
+                    <span> Auto Scroll To Bottom</span>
+                </div>
+                <div class="input-group-text float-right">
+                    <span>Total Open Order: &nbsp; </span><span id="total_number_order">0</span>
+                </div>
+            </div>
+            <div class="card-body text-bold">
+                <div class="scroll-ele" id="open-order-list" style="height: 502px">
+                    <div class="card">
+                        <div class="card-body">
+                            <table class="table table-bordered">
+                                <thead>
+                                <tr class="table-active">
+                                    <th scope="col">Time</th>
+                                    <th scope="col">OrderID</th>
+                                    <th scope="col">Pair</th>
+                                    <th scope="col">Side</th>
+                                    <th scope="col">Amount</th>
+                                    <th scope="col">Filled</th>
+                                    <th scope="col">Price</th>
+                                    <th scope="col">Status</th>
+                                </tr>
+                                </thead>
+                                <tbody id="body-open-order">
+                                </tbody>
+                            </table>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <div class="col-sm-6">
+        <div id="open-order" class="card">
+            <div class="card-header text-bold"><span>Order History</span>
+                <div class="input-group-text float-right">
+                    </button>
+                    <input id="scroll-cb-order-history" checked type="checkbox"
+                           aria-label="Checkbox for following text input">
+                    <span> Auto Scroll To Bottom</span>
+                </div>
+            </div>
+            <div class="card-body text-bold">
+                <div class="scroll-ele" id="order-history-list" style="height: 502px">
+                    <div class="card">
+                        <div class="card-body">
+                            <table class="table table-bordered">
+                                <thead>
+                                <tr class="table-active">
+                                    <th scope="col">#</th>
+                                    <th scope="col">Time Open</th>
+                                    <th scope="col">Time Event</th>
+                                    <th scope="col">OrderID</th>
+                                    <th scope="col">Pair</th>
+                                    <th scope="col">Side</th>
+                                    <th scope="col">Amount</th>
+                                    <th scope="col">Filled</th>
+                                    <th scope="col">Price</th>
+                                    <th scope="col">Status</th>
+                                </tr>
+                                </thead>
+                                <tbody id="body-order-history">
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

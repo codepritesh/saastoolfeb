@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="{% static 'favicon.ico' %}">
+    {% block head %}
+        <title>{% block title %}{% endblock %} - Trading Bot</title>
+    {% endblock %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script
+            src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+    <script>
+        var port = location.port;
+        var ws_define = "{{ ws_define|escapejs }}";
+        var user = "{{ user|escapejs }}";
+    </script>
+    <script type="text/javascript" src="{% static 'js/uuid_v1.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/admin/index.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% block rec_data %} {% endblock %}
+    {% block h_common %}
+    {% endblock %}
+</head>
+<body>
+<section id="content">
+    <section>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="navbar-collapse">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/pnl-tracking">PNL Tracking</a>
+                    </li>
+                    {% block botUrl %}
+                        <li>
+                            <a class="nav-link active" href="/manual-setting">Manual Setting</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/manual-add-pnl">Manual Add PNL</a>
+                        </li>
+                    {% endblock %}
+                </ul>
+            </div>
+        </nav>
+    </section>
+    <section class="form">
+        <div class="card">
+            <div class="card-header">Input</div>
+            <div class="card-body">
+                <div class="form-padding-left">
+                    {% include "components/form_input_component.html" with n_col=2 label='Refresh Time' v_def=refresh_time id='time_refresh' value=data.time_refresh %}
+                    {% include "components/form_input_component.html" with n_col=12 label='Coin List' v_def=coin_list id='coin_list' value=data.coin_list %}
+                </div>
+                <div class="row justify-content-around">
+                    {% block v_action %}
+                        <button id="btn-update" type="button" class="btn btn-primary col-md-2">Update</button>
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+    </section>
+    {% block another_block %} {% endblock %}
+    {% block content %}{% endblock %}
+</section>
+
+</body>
+
+</html>

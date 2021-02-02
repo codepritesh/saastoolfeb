@@ -1,0 +1,36 @@
+{% extends "snapshot.html" %}
+{% block title %}{{ title }}{% endblock %}
+{% block botUrl %}
+    <li class="nav-item">
+        <a class="nav-link" href="/{{ bot_url }}">{{ bot_name }}</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/{{ bot_url }}/tracking">Tracking</a>
+    </li>
+    <li class="nav-item active">
+        <a class="nav-link" href="/{{ bot_url }}/snapshot">SnapShot</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/{{ bot_url }}/chart">Chart</a>
+    </li>
+{% endblock %}
+{% block content_header %}
+    <th scope="col">UUID</th>
+    <th scope="col">Time</th>
+    <th scope="col">Own Name</th>
+    <th scope="col">Exchange</th>
+    <th scope="col">API Name</th>
+    <th scope="col">Pair</th>
+{% endblock %}
+{% block content_body %}
+    {% for item in list_bot_snapshot %}
+        <tr>
+            <td><a href="/{{ bot_url }}/resume?id={{ item.uuid }}" target="_blank">{{ item.uuid }}</a></td>
+            <td>{{ item.time }}</td>
+            <td>{{ item.own_name }}</td>
+            <td>{{ item.ex_id }}</td>
+            <td>{{ item.api_name }}</td>
+            <td>{{ item.pair }}</td>
+        </tr>
+    {% endfor %}
+{% endblock %}

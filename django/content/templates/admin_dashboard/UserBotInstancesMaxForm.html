@@ -1,0 +1,49 @@
+{% extends 'admin_dashboard/user_basepage.html' %}
+
+{%  if request.user.is_superuser %}
+{% block contentContainer %}
+<!-- this will block the usertable-->
+{% block user_bot_data %}  {% endblock %}
+<!-- this will block the usertable-->
+{% block content %}
+<section id="content">
+<div class="card">
+ <h1>
+All user max instances permission.
+</h1>
+
+<form action="" method="post" autocomplete="off">
+                        {% csrf_token %}
+
+{{ user_data_form.as_p }}
+
+
+ <div class="row">
+                                <div class="col-md-4">
+                                        <button type="submit" class ="btn btn-success btn-block btn-lg"><i class="fas fa-database"></i>Submit</button>
+                                </div>
+                                <div class="col-md-4">
+                                <a href="{% url 'admin_dashboard_index' %}" class="btn btn-secondary btn-block btn-lg">
+                                <i class="fas fa-stream"></i> User Dashboard
+                                </a>
+                                </div>
+                                <div class="col-md-4">
+                                <a href="{% url 'user_permission_list' %}" class="btn btn-success btn-block btn-lg">
+                                <i class="fas fa-stream"></i> User Permission Dashboard
+                                </a>
+                                </div>
+                        
+                        
+                        
+                        </div>
+
+
+                        
+  
+     
+    
+</div>
+</section>
+{% endblock content %}
+{% endblock %}
+{% endif %}

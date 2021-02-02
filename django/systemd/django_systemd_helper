@@ -1,0 +1,17 @@
+#!/bin/bash -x
+
+ETCROOT_D_APP="/etc/django_app.d/"
+ACTION=$1
+CONFIG_FILE=${ETCROOT_D_APP}$2
+
+if [ -s $CONFIG_FILE ]; then
+    . $CONFIG_FILE
+else
+    return 1
+fi
+
+if [ "$ACTION" != "start" ] && [ "$ACTION" != "stop" ]; then
+    return 1
+fi
+
+$ABS_PATH_REPO/django/d_app_start.sh $ACTION $PORT

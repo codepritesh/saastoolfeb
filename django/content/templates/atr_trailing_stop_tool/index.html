@@ -1,0 +1,84 @@
+{% extends "adminLTE.html" %}
+{% block title %}ATR Trailing Stop Tool{% endblock %}
+{% block head %}
+  {{ block.super }}
+{% endblock %}
+{% block h_common %}
+    {% load static %}
+  <script type="text/javascript" src="{% static 'js/atr_trailing_stop_tool/index.js' %}"></script>
+{% endblock %}
+{% block botUrl %}
+<li class="nav-item active">
+  <a class="nav-link" href="/atr-trailing-stop-bot-tool">ATR Trailing Stop Tool</a>
+</li>
+    <li class="nav-item">
+        <a class="nav-link" href="/atr-trailing-stop-bot-tool/tracking">Tracking</a>
+    </li>
+    {% comment %}
+    <li class="nav-item">
+        <a class="nav-link" href="/atr-trailing-stop-bot-tool/snapshot">SnapShot</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/atr-trailing-stop-bot-tool/chart">Chart</a>
+    </li>
+    {% endcomment %}
+{% endblock %}
+{% block v_input %}
+<h4>ATR Trailing Stop Tool</h4>
+<a  href="/atr-trailing-stop-bot-tool/HowToUseAtrTrailingStopTool" target="_blank"><p class="text-right" style="color:#ffc107;">How To Use?</p></a>
+    <div class="form-row value-row">
+        {% include "components/ex_change_component.html" with n_col=2 label='Exchange' value=data.ex_id %}
+        {% include "components/apis_dropdown_component.html" with n_col=2 label='Account' id='api_name' apis=apis %}
+        {% include "components/form_input_component.html" with n_col=2 label='Pair' id='pair' v_def='BTC/USDT' value=data.pair %}
+        {% include "components/form_input_component.html" with n_col=2 label='Amount' id='amount' v_def='0.1' value=data.amount %}
+        {% include "components/form_input_component.html" with n_col=2 label='Price' id='price' v_def='0' value=data.price %}
+        {% include "components/form_input_component.html" with n_col=2 label='Profit' id='profit' v_def='0.3' value=data.profit %}
+        {% include "components/form_input_component.html" with n_col=2 label='Base Amount(%)' id='base_amount' v_def='50' value=data.base_amount %}
+        {% include "components/form_input_component.html" with n_col=2 label='Trailing Margin' id='trailing_margin' v_def='0.1' value=data.trailing_margin %}
+        {% include "components/form_input_component.html" with n_col=2 label='Fees' id='fees' v_def='0.00015' value=data.fees %}
+    </div>
+{% endblock %}
+{% block another_btn %}
+    <section class="card" style="margin: 20px">
+        <div class="card-header">
+            ACTION
+        </div>
+        <div class="card-body">
+            <div class="row justify-content-center">
+                <button id="btn-place-buy" type="button" class="btn bg-success col-md-2 mr-2">Place Buy
+                </button>
+                <button id="btn-place-sell" type="button" class="btn bg-danger col-md-2">Place Sell
+                </button>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+{% block v_action %}
+    {% if not data %}
+    {% if bot_five < max_bot_five %}
+
+    <button id="btn-start-bot" type="button" class="btn btn-primary col-md-2">
+        Start Bot
+    </button>
+    {% else %}
+         <button id="max_bot_running" type="button" class="btn btn-primary col-md-2" title="you have maximum bot running to increase your bot instance contact to admin.">
+        Start Bot
+    </button>
+    <h6>you have maximum bot running pls contact to admin to increase bot instance</h6>
+    {% endif %}
+{% endif %}
+{% if resume %}
+    <button id="btn-resume-bot" type="button" class="btn btn-primary col-md-2">
+        Resume Bot
+    </button>
+{% endif %}
+<button id="btn-show-stop-bot" type="button" class="btn btn-danger col-md-2">
+        Kill Bot
+</button>
+
+
+
+{% endblock %}
+{% block content %}
+    {% include "components/log_and_trade_info_component.html" %}
+{% endblock %}

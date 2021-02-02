@@ -1,0 +1,76 @@
+{% extends 'admin_dashboard/user_basepage.html' %}
+
+
+
+{%  if request.user.is_superuser %}
+{% block contentContainer %}
+<!-- this will block the usertable-->
+{% block user_bot_data %}  {% endblock %}
+<!-- this will block the usertable-->
+
+{% block content %}
+
+<section id="content">
+    <div class="card">
+        <div class="card-header">
+All user running bot instances
+</div>
+<div class="card-body no-border">
+<div class="table-responsive">
+<table class="table table-bordered">
+    <thead class="boarder-bottom font-weight-bold">
+        <tr>
+             
+           <th>user_name</th>
+            <th>avg_tool</th>
+            <th>support_big_amount_bot</th>
+            <th>support_trailing_stop_bot</th>
+            <th>arb_two_way_tool</th>
+            <th>atr_trailing_stop_bot_tool</th>
+            <th>two_way_sp_tool</th>
+            <th>support_multi_box</th>
+            <th>bs_sb_continuously_tool</th>
+        </tr>
+    </thead>
+    <tbody>
+                    {% for u in permission_list %}
+                    <tr>
+
+
+                       
+                               
+                                
+                                <td> <a href="{% url 'admin_want_to_kill_userbot' u.user_name.id %}" class="btn text-primary px-0"> {{u.user_name}}</a></td> 
+                                <td>{{u.avg_tool_bots_running}}</td>
+                                <td>{{u.support_big_amount_bots_running}}</td>
+                                 <td>{{u.support_trailing_stop_bots_running}}</td>
+                                <td>{{u.arb_two_way_bots_running}}</td>
+                                <td>{{u.atr_trailing_stop_bots_running}}</td>
+                                 <td>{{u.two_way_sp_tool_bots_running}}</td>
+                                <td>{{u.support_multi_box_bots_running}}</td>
+                                <td>{{u.bs_sb_continuously_tool_bots_running}}</td>
+                               
+                                
+                                                    
+                    </tr>
+                    {% endfor %}
+    
+    
+   </tbody>
+
+
+
+</table>
+</div>
+</div>
+</div>
+</section>
+{% endblock content %}
+{% endblock %}
+{% endif %}
+
+
+
+
+
+                      

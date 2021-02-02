@@ -1,0 +1,46 @@
+{% extends "adminLTE.html" %}
+{% block title %}Scalping Trailing Bot{% endblock %}
+{% block head %}
+  {{ block.super }}
+{% endblock %}
+{% block h_common %}
+    {% load static %}
+  <script type="text/javascript" src="{% static 'js/scalping_trailing/index.js' %}"></script>
+{% endblock %}
+{% block botUrl %}
+<li class="nav-item active">
+  <a class="nav-link" href="/scalping-trailing-bot">Scalping Trailing Bot</a>
+</li>
+    <li class="nav-item">
+        <a class="nav-link" href="/scalping-trailing-bot/tracking">Tracking</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/scalping-trailing-bot/snapshot">SnapShot</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/scalping-trailing-bot/chart">Chart</a>
+    </li>
+{% endblock %}
+{% block v_input %}
+    <div class="form-row value-row">
+        {% include "components/ex_change_component.html" with n_col=2 label='Exchange' value=data.ex_id %}
+        {% include "components/apis_dropdown_component.html" with n_col=2 label='Account' id='api_name' apis=apis %}
+        {% include "components/form_input_component.html" with n_col=2 label='Pair' id='pair' v_def='BTC/USDT' value=data.pair %}
+        {% include "components/form_input_component.html" with n_col=2 label='Amount' id='amount' v_def='5' value=data.amount %}
+        {% include "components/form_input_component.html" with n_col=2 label='Profit' id='profit' v_def='0.3' value=data.profit %}
+        {% include "components/form_input_component.html" with n_col=2 label='Margin' id='margin' v_def='0.3' value=data.margin %}
+    </div>
+    <div class="form-row">
+        {% include "components/form_input_component.html" with n_col=2 label='Trailing Amount' id='trailing_amount' v_def='0.5' value=data.trailing_amount %}
+        {% include "components/form_input_component.html" with n_col=2 label='Fees' id='fees' v_def='0.00015' value=data.free %}
+        {% include "components/form_input_component.html" with n_col=2 label='Rate Profit' id='rate_profit' v_def='1' value=data.rate_profit %}
+    </div>
+{% endblock %}
+{% block v_action %}
+    {{ block.super }}
+{% endblock %}
+{% block content %}
+    {% include "components/log_and_trade_info_component.html" %}
+{% endblock %}
+{% block pnlTable %}
+{% endblock %}

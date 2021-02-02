@@ -1,0 +1,7 @@
+<select class="custom-select exchange" id="{{ id }}" {% if is_disable %} disabled {% endif %}>
+    {% if apis %}
+        {% for item in apis %}
+            <option value={{ item }}>{{ item }}</option>
+        {% endfor %}
+    {% endif %}
+</select>

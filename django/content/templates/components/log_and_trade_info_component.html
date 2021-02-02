@@ -1,0 +1,57 @@
+<section id="trade-info" class="row">
+    <section id="log" class="col-md-8 col-sm-12">
+        <div class="card">
+            <div class="card-header text-bold">
+                <div class="input-group-text float-right">
+                    <button type="button" class="btn btn-primary" id="btn-download-log">Download Log
+                    </button>
+                    <input id="scroll-cb" checked type="checkbox"
+                           aria-label="Checkbox for following text input">
+                    <span> Auto Scroll To Bottom</span>
+                </div>
+            </div>
+
+            <div class="card-body">
+                <div class="scroll-spy" id="trader-log" style="height: 502px">
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <article id="trade-order-info" class="col-md-4 col-sm-12">
+        <div class="card">
+            <div class="card-body no-border">
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th scope="col" style="width: 100px">Chain</th>
+                        <th scope="col">Bid</th>
+                        <th scope="col">Ask</th>
+                    </tr>
+                    </thead>
+                    <tbody id="body_price_table">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body no-border" style="overflow-x:auto;">
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th scope="col">COIN</th>
+                        <th scope="col">START</th>
+                        <th scope="col">CURRENT</th>
+                        <th scope="col">MARGIN</th>
+                        <th scope="col">PNL</th>
+                        <th scope="col">PRICE</th>
+                    </tr>
+                    </thead>
+                    <tbody id="body_pnl_table">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div id='table-monitor-link' class="overflow-auto"></div>
+    </article>
+</section>

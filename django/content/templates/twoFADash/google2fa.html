@@ -1,0 +1,67 @@
+{% extends 'adminLTE.html' %}
+
+
+{% block contentContainer %}
+<!-- this will block the usertable-->
+{% block user_bot_data %}  {% endblock %}
+<!-- this will block the usertable-->
+{% block content %}
+
+<section id="content">
+    <div class="card">
+        <div class="card-header">
+
+
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+        
+
+     
+
+
+    {% if status_activate == True %}
+      <h1>Two-Factor Authentication</h1>
+	<p>You have already activated your 2FA with Google Authenticator.</p>
+  <p>If you have lost access to the GA or your backup secret key, please contact the admin for assistance.</p>
+
+
+    {% else %}
+	<h1>Two-Factor Authentication</h1>
+
+   <p>Enable your 2FA to protect your account with Google Authenticator.</p>
+   <p>Please Download and Install the Google Authenticator App from the App Store.</p>
+   <p>Click Next and follow the instruction to enable your 2FA.</p>
+  
+   
+        <a class="btn btn-primary" href="{% url 'twoFAGActivatePage' %}" role="button">Next</a>
+     {% endif %}
+  
+
+  
+
+  </div>
+   </div>
+    </div>
+
+ </div>
+    </div>
+ 
+</section>
+
+
+
+  
+  
+  {% endblock content %}
+
+
+{% endblock %}

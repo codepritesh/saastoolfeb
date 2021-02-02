@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="{% static 'favicon.ico' %}">
+    <title>Trading Bot</title>
+    {% load static %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
+    <script
+            src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+<body>
+{% if user.is_authenticated %}
+<section id="content">
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="scalping-tab" data-toggle="tab" href="#scalping" role="tab"
+               aria-controls="scalping" aria-selected="true">SCALPING STRATEGY BOTS</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="arb-tab" data-toggle="tab" href="#arb" role="tab"
+               aria-controls="arb" aria-selected="false">ARBITRAGE STRATEGY BOTS</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="indicator-tab" data-toggle="tab" href="#indicator" role="tab"
+               aria-controls="indicator" aria-selected="false">INDICATOR BOTS</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="tool-tab" data-toggle="tab" href="#tool" role="tab"
+               aria-controls="tool" aria-selected="false">SUPPORT TOOLS</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="partner-tab" data-toggle="tab" href="#partner" role="tab"
+               aria-controls="partner" aria-selected="false">PARTNER BOTS</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="backtest-tab" data-toggle="tab" href="#backtest" role="tab"
+               aria-controls="backtest" aria-selected="false">BACKTESTS</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="user-tab" data-toggle="tab" href="#user" role="tab"
+               aria-controls="user" aria-selected="false">USER & API</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout' %}"><i class="fa fa-sign-out" style="font-size:24px;color:red"></i></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link border" ><i class="fa fa-user" style="font-size:24px;color:yellow"></i><span> &nbsp; {{ own_name }}</span></a>
+        </li>
+    </ul>
+    <div class="card-body">
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="scalping" role="tabpanel" aria-labelledby="scalping-tab">
+                <div class="row">
+                    {% include "components/link_to_component.html" with ref_to='/new-one-way-bot' label='New One Way Strategy Bot' %}
+                    {% include "components/link_to_component.html" with ref_to='/new-scalping-bot' label='Scalping Winder Bot' %}
+                    {% include "components/link_to_component.html" with ref_to='/pure-zelda-bot' label='Pure Zelda Bot' %}
+                    {% include "components/link_to_component.html" with ref_to='/aov-advanced-bot' label='AOV Advanced Bot' %}
+                    {% include "components/link_to_component.html" with ref_to='/multi-zelda-bot' label='Multi Range Zelda (Trailing Pulling) Bot' %}
+                    {% include "components/link_to_component.html" with ref_to='/multi-mini-range-bot' label='Multi Mini Range (Revert/Cutloss) Bot' %}
+                    {% include "components/link_to_component.html" with ref_to='/zelda-close-step-bot' label='Zelda Close Step Bot' %}
+                    {% include "components/link_to_component.html" with ref_to='/aov-close-step-bot' label='AOV Close Step Bot' %}
+                    {% include "components/link_to_component.html" with ref_to='/scalping-trailing-bot' label='Scalping Trailing Bot'%}
+                </div>
+            </div>
+            <div class="tab-pane fade" id="arb" role="tabpanel" aria-labelledby="arb-tab">
+                <div class="row">
+                    {% include "components/link_to_component.html" with ref_to='/arb-3ways-bot' label='Arb 3Ways Bot' %}
+                    {% include "components/link_to_component.html" with ref_to='/marker-moonix' label='Binance-Moonix Bot' %}
+                    {% include "components/link_to_component.html" with ref_to='/arb-zelda-bot' label='Arb Zelda Bot' %}
+                </div>
+            </div>
+            <div class="tab-pane fade" id="indicator" role="tabpanel" aria-labelledby="indicator-tab">
+                <div class="row">
+                    {% include "components/link_to_component.html" with ref_to='/ma-bot' label='MA Bot' %}
+                    {% include "components/link_to_component.html" with ref_to='/ma-bot-origin' label='MA Bot Origin' %}
+                </div>
+            </div>
+            <div class="tab-pane fade" id="partner" role="tabpanel" aria-labelledby="partner-tab">
+                <div class="row">
+                    {% include "components/link_to_component.html" with ref_to='/denver' label='Dever Bot' %}
+                </div>
+            </div>
+            <div class="tab-pane fade" id="tool" role="tabpanel" aria-labelledby="tool-tab">
+                <div class="row">
+                    {% include "components/link_to_component.html" with ref_to='/avg-tool' label='Cancel and Average Tool' %}
+                    {% include "components/link_to_component.html" with ref_to='/support-big-amount-bot' label='Support Big Amount Bot' %}
+                    {% include "components/link_to_component.html" with ref_to='/support-trailing-stop-bot' label='Support Trailing Stop' %}
+                    {% include "components/link_to_component.html" with ref_to='/backtest/download-data-history' label='Download OHLCV/Trade History' %}
+                    {% include "components/link_to_component.html" with ref_to='/tool-support-open-position-bot' label='Tool Support Open Position' %}
+                </div>
+            </div>
+            <div class="tab-pane fade" id="backtest" role="tabpanel" aria-labelledby="backtest-tab">
+                <div class="row">
+                    {% include "components/link_to_component.html" with ref_to='/backtest/one-way-bot-backtest' label='One Way Bot Backtest' %}
+                    {% include "components/link_to_component.html" with ref_to='/backtest/martin-bt-v1' label='Martin Backtest V1' %}
+                    {% include "components/link_to_component.html" with ref_to='/backtest/aov-backtest' label='AOV Back test' %}
+                    {% include "components/link_to_component.html" with ref_to='/backtest/millipedes-bot-backtest' label='Millipedes Bot Backtest' %}
+                    {% include "components/link_to_component.html" with ref_to='/backtest/pulling-backtest' label='Pulling Backtest' %}
+                    {% include "components/link_to_component.html" with ref_to='/backtest/scalping-zee-v3-bot-backtest' label='Scalping Zee V3 Backtest' %}
+                    {% include "components/link_to_component.html" with ref_to='/backtest/backtest-indicator' label='Indicator Backtest' %}
+                </div>
+            </div>
+            <div class="user-pane fade" id="user" role="tabpanel" aria-labelledby="user-tab">
+                <div class="row">
+                    {% include "components/link_to_component.html" with ref_to='/admin/setup_apikey/apikey/add' label='Setup API Key' %}
+                    {%  if own_name == 'master'%}
+                        {% include "components/link_to_component.html" with ref_to='/pnl-tracking' label='PNL Tracking' %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}
+</body>
+</html>

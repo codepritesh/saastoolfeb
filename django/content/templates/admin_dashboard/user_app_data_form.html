@@ -1,0 +1,129 @@
+{% extends 'admin_dashboard/user_basepage.html' %}
+{% block content %}
+
+
+<div class="card">
+<form action="" method="post" autocomplete="off">
+                        {% csrf_token %}
+  {{ user_update_form.non_field_errors }}
+
+  {{ user_update_form.source.errors }}
+  {{ user_update_form.source }}
+
+
+
+
+
+
+
+
+
+<table border="1">
+
+      <tr style="display:none;">
+        <th>{{ user_update_form.password.label_tag }}</th>
+        <td>
+          {{ user_update_form.password.errors }}
+          {{ user_update_form.password }}
+        </td>
+      </tr>
+
+      <tr style="display:none;">
+        <th>{{ user_update_form.last_login.label_tag }}</th>
+        <td>
+          {{ user_update_form.last_login.errors }}
+          {{ user_update_form.last_login }}
+        </td>
+      </tr>
+
+      <tr style="display:none;">
+        <th>{{ user_update_form.is_superuser.label_tag }}</th>
+        <td>
+          {{ user_update_form.is_superuser.errors }}
+          {{ user_update_form.is_superuser }}
+          <br />
+          {{ user_update_form.is_superuser.help_text }}
+        </td>
+      </tr>
+      <tr style="pointer-events:none;">
+        <th>{{ user_update_form.username.label_tag }}</th>
+        <td>
+          {{ user_update_form.username.errors }}
+          {{ user_update_form.username }}
+        </td>
+      </tr>
+      <tr style="display:none;">
+        <th>{{ user_update_form.first_name.label_tag }}</th>
+        <td>
+          {{ user_update_form.first_name.errors }}
+          {{ user_update_form.first_name }}
+        </td>
+      </tr>
+      <tr style="display:none;">
+        <th>{{ user_update_form.last_name.label_tag }}</th>
+        <td>
+          {{ user_update_form.last_name.errors }}
+          {{ user_update_form.last_name }}
+        </td>
+      </tr>
+      <tr style="display:none;">
+        <th>{{ user_update_form.email.label_tag }}</th>
+        <td>
+          {{ user_update_form.email.errors }}
+          {{ user_update_form.email }}
+        </td>
+      </tr>
+      <tr style="display:none;">
+        <th>{{ user_update_form.is_staff.label_tag }}</th>
+        <td>
+          {{ user_update_form.is_staff.errors }}
+          {{ user_update_form.is_staff }}
+        </td>
+      </tr>
+      <tr >
+        <th>{{ user_update_form.is_active.label_tag }}</th>
+        <td>
+          {{ user_update_form.is_active.errors }}
+          {{ user_update_form.is_active }}
+        </td>
+      </tr>
+      <tr style="display:none;">
+        <th>{{ user_update_form.date_joined.label_tag }}</th>
+        <td>
+          {{ user_update_form.date_joined.errors }}
+          {{ user_update_form.date_joined }}
+        </td>
+      </tr>
+
+  </table>
+
+
+ <div class="row">
+                                <div class="col-md-4">
+                                        <button type="submit" class ="btn btn-success btn-block btn-lg"><i class="fas fa-database"></i>Submit</button>
+                                </div>
+
+
+                                <div class="col-md-4">
+                                <a href="{% url 'admin_dashboard_index' %}" class="btn btn-secondary btn-block btn-lg">
+                                <i class="fas fa-stream"></i> Back to user
+                                </a>
+                                </div>
+                                <div class="col-md-4">
+                                <a href="{% url 'user_permission_list' %}" class="btn btn-success btn-block btn-lg">
+                                <i class="fas fa-stream"></i> back to userlist
+                                </a>
+                                </div>
+                        
+                        
+                        
+                        </div>
+                        </form>
+
+
+   </div>                     
+  
+     
+    
+
+{% endblock content %}

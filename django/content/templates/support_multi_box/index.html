@@ -1,0 +1,162 @@
+{% extends "adminLTE.html" %}
+{% block title %}Support Multi Box Bot{% endblock %}
+{% block head %}
+    {{ block.super }}
+{% endblock %}
+{% block h_common %}
+    {% load static %}
+    <script type="text/javascript" src="{% static 'js/support_multi_box/index.js' %}"></script>
+{% endblock %}
+{% block botUrl %}
+    <li class="nav-item active">
+        <a class="nav-link" href="/support-multi-box">Support Multi Box Bot</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/support-multi-box/tracking">Tracking</a>
+    </li>
+    {% comment %}
+    <li class="nav-item">
+        <a class="nav-link" href="/support-multi-box/snapshot">SnapShot</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/support-multi-box/chart">Chart</a>
+    </li>
+    {% endcomment %}
+{% endblock %}
+{% block v_input %}
+
+<h4>Support Multi Box Bot </h4>
+<a  href="/support-multi-box/HowToUseSupportMultyBox" target="_blank"><p class="text-right" style="color:#ffc107;">How To Use?</p></a>
+    <div class="form-row value-row">
+        {% include "components/ex_change_component.html" with n_col=2 label='Exchange' value=data.ex_id %}
+        {% include "components/apis_dropdown_component.html" with n_col=2 label='Account' id='api_name' apis=apis %}
+        {% include "components/form_input_component.html" with n_col=2 label='Pair' id='pair' v_def='BTC/USDT' value=data.pair %}
+    </div>
+{% endblock %}
+{% block another_btn %}
+    <section class="row">
+        <section class="card col-6" style="margin-bottom: 20px">
+            <div class="card-header bg-warning">
+                <h5>Initialization</h5>
+            </div>
+            <div class="card-body">
+                <div class="form-row value-row">
+                    {% include "components/form_input_component.html" with n_col=4 label='Buy Price' id='inti_box_buy_price' v_def='0' value=data.inti_box_buy_price %}
+                    {% include "components/form_input_component.html" with n_col=4 label='Sell Price' id='inti_box_sell_price' v_def='0' value=data.inti_box_sell_price %}
+                    {% include "components/form_input_component.html" with n_col=4 label='Amount' id='inti_box_amount' v_def='0' value=data.inti_box_amount %}
+                </div>
+                <div class="row justify-content-center">
+                    <button id="inti_box_submit" type="button" class="btn bg-success col-md-2"
+                            style="margin-right: 20px">
+                        Submit
+                    </button>
+                </div>
+            </div>
+        </section>
+        <section class="card col-6" style="margin-bottom: 20px">
+            <div class="card-header bg-warning">
+                <h5>Follow Track</h5>
+            </div>
+            <div class="card-body">
+                <div class="form-row value-row">
+                    {% include "components/swith_btn_component.html" with n_col=2 id='follow_track_box_postOnly' value=data.follow_track_box_postOnly dataOn='ON' dataOff='OFF' label='PostOnly' %}
+                    {% include "components/form_input_component.html" with n_col=4 label='Gap' id_container='follow_track_box_gap_container' id='follow_track_box_gap' v_def='0' value=data.follow_track_box_gap %}
+                    {% include "components/form_input_component.html" with n_col=4 label='Follow Gap' id_container='follow_track_box_follow_gap_container' id='follow_track_box_follow_gap' v_def='0' value=data.follow_track_box_follow_gap %}
+                </div>
+                <div class="form-row value-row">
+                    {% include "components/form_input_component.html" with n_col=4 label='Amount' id='follow_track_box_amount' v_def='0' value=data.follow_track_box_amount %}
+                </div>
+                <div class="row justify-content-center">
+                    <button id="follow_track_box_buy" type="button" class="btn bg-success col-md-4 mr-2">Place Buy
+                    </button>
+                    <button id="follow_track_box_sell" type="button" class="btn bg-danger col-md-4">Place Sell
+                    </button>
+                </div>
+            </div>
+        </section>
+        <section class="card col-6" style="margin-bottom: 20px">
+            <div class="card-header bg-warning">
+                <h5>Balancing Orders</h5>
+            </div>
+            <div class="card-body">
+                <div class="form-row value-row">
+                    {% include "components/form_input_component.html" with n_col=4 label='Amount' id='balance_box_amount' v_def='0' value=data.balance_box_amount %}
+                    {% include "components/form_input_component.html" with n_col=4 label='Count' id='balance_box_count' v_def='0' value=data.balance_box_count %}
+                </div>
+                <div class="row justify-content-center">
+                    <button id="balance_box_box_buy" type="button" class="btn bg-success col-md-4 mr-2">Place Buy
+                    </button>
+                    <button id="balance_box_box_sell" type="button" class="btn bg-danger col-md-4">Place Sell
+                    </button>
+                </div>
+            </div>
+        </section>
+        <section class="card col-6" style="margin-bottom: 20px">
+            <div class="card-header bg-warning">
+                <h5>Data</h5>
+            </div>
+            <div class="card-body">
+                <div class="form-row value-row">
+                    {% include "components/form_input_component.html" with n_col=4 label='FARTHEST BUY' id='farthest_buy' v_def='0' value='0'%}
+                    {% include "components/form_input_component.html" with n_col=4 label='FARTHEST SELL' id='farthest_sell' v_def='0' value='0' %}
+                    {% include "components/form_input_component.html" with n_col=4 label='MID' id='mid' v_def='0' value='0' %}
+                </div>
+            </div>
+        </section>
+                <section class="card col-6" style="margin-bottom: 20px">
+            <div class="card-header bg-warning">
+                <h5>Follow Balancing Orders</h5>
+            </div>
+            <div class="card-body">
+                <div class="form-row value-row">
+                    {% include "components/swith_btn_component.html" with n_col=2 id='follow_balance_box_postOnly' value=data.follow_balance_box_postOnly dataOn='ON' dataOff='OFF' label='PostOnly' %}
+                    {% include "components/form_input_component.html" with n_col=4 label='Gap' id_container='follow_balance_box_gap_container' id='follow_balance_box_gap' v_def='0' value=data.follow_balance_box_gap %}
+                    {% include "components/form_input_component.html" with n_col=4 label='Follow Gap' id_container='follow_balance_box_follow_gap_container' id='follow_balance_box_follow_gap' v_def='0' value=data.follow_balance_box_follow_gap %}
+                </div>
+                <div class="form-row value-row">
+                    {% include "components/form_input_component.html" with n_col=4 label='Time delay' id='follow_balance_box_time' v_def='1.5' value=data.follow_balance_box_time %}
+                    {% include "components/form_input_component.html" with n_col=4 label='Profit' id='follow_balance_box_profit' v_def='0' value=data.follow_balance_box_profit %}
+                    {% include "components/form_input_component.html" with n_col=4 label='Step' id='follow_balance_box_step' v_def='0' value=data.follow_balance_box_step %}
+                    {% include "components/form_input_component.html" with n_col=4 label='Amount' id='follow_balance_box_amount' v_def='0' value=data.follow_balance_box_amount %}
+                    {% include "components/form_input_component.html" with n_col=4 label='Count' id='follow_balance_box_count' v_def='0' value=data.follow_balance_box_count %}
+                </div>
+                <div class="row justify-content-center">
+                    <button id="follow_balance_box_buy" type="button" class="btn bg-success col-md-4 mr-2">Place Buy
+                    </button>
+                    <button id="follow_balance_box_sell" type="button" class="btn bg-danger col-md-4">Place Sell
+                    </button>
+                </div>
+            </div>
+        </section>
+    </section>
+
+{% endblock %}
+{% block v_action %}
+    {% if not data %}
+    {% if bot_seven < max_bot_seven %}
+
+    <button id="btn-start-bot" type="button" class="btn btn-primary col-md-2">
+        Start Bot
+    </button>
+    {% else %}
+         <button id="max_bot_running" type="button" class="btn btn-primary col-md-2" title="you have maximum bot running to increase your bot instance contact to admin.">
+        Start Bot
+    </button>
+    <h6>you have maximum bot running pls contact to admin to increase bot instance</h6>
+    {% endif %}
+{% endif %}
+{% if resume %}
+    <button id="btn-resume-bot" type="button" class="btn btn-primary col-md-2">
+        Resume Bot
+    </button>
+{% endif %}
+<button id="btn-show-stop-bot" type="button" class="btn btn-danger col-md-2">
+        Kill Bot
+</button>
+
+
+
+{% endblock %}
+{% block content %}
+    {% include "components/log_and_trade_info_component.html" %}
+{% endblock %}

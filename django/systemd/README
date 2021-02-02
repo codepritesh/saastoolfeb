@@ -1,0 +1,15 @@
+To deploy a Django web service using systemd, there are 2 ways to do:
+1. - Copy django_app-example.service to /etc/systemd/system/ or /lib/systemd/system/,
+     then rename it to a specific name on demand.
+   - Substitute <abs-path-to-repo> with the absolute path to the repo.
+   - Substitute <port> with the port number on which web server is starting.
+
+2. - Copy django_app@.service to /etc/systemd/system/ or /lib/systemd/system/
+     (just need to copy it once).
+   - Copy django_systemd_helper to /usr/local/bin/ and grant execute permission for it.
+     (just need to do this once).
+   - Create dir django_app.d/ in /etc/ (just need to do this once).
+   - For each port for web server, create file <port_number>.conf in /etc/django_app.d/
+     with content similar to of port_conf_template.conf.
+   - Update content of conf file like 1st way above.
+   - Start web server with 'systemctl start django_app@<port_number>.service'

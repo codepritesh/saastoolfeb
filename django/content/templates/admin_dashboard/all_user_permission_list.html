@@ -1,0 +1,91 @@
+{% extends 'admin_dashboard/user_basepage.html' %}
+
+
+{%  if request.user.is_superuser %}
+{% block contentContainer %}
+
+
+<!-- this will block the usertable-->
+{% block user_bot_data %}  {% endblock %}
+<!-- this will block the usertable-->
+
+
+{% block content %}
+<section id="content">
+    <div class="card">
+        <div class="card-header">
+			All User Bot Permision 
+		</div>
+<div class="card-body no-border">
+<div class="table-responsive">
+<table class="table table-bordered">
+    <thead class="boarder-bottom font-weight-bold">
+        <tr>
+            <td>Delete</td>
+            <td>Update</td>
+            <td>user_name</td>
+            <td>avg_tool</td>
+            <td>support_big_amount_bot</td>
+            <td>support_trailing_stop_bot</td>
+            <td>arb_two_way_tool</td>
+            <td>atr_trailing_stop_bot_tool</td>
+            <td>two_way_sp_tool</td>
+            <td>support_multi_box</td>
+            <td>bs_sb_continuously_tool</td>
+            
+           
+        </tr>
+    </thead>
+    <tbody>
+                    {% for u in permission_list %}
+                    <tr>
+                              
+                                 <td>     
+
+                                         <form action="{%url 'user_permission_delete' u.user_name.id%}" method="post" class="d-inline">
+                                        {% csrf_token %}
+                                        <button type="submit" class = "btn">
+                                                <i class="far fa-trash-alt fa-lg text-danger float-right"></i>
+                                        </button>
+                                        
+                                        </form>
+                                         
+
+                                        
+                                </td>
+                                 <td>
+                                        <a href="{% url 'user_permission_update' u.user_name.id %}" class="btn text-secondary px-0">
+                                        <i class="far fa-edit fa-lg"></i></a>
+                                 </td>   
+                                <td>{{u.user_name}}</td>
+                                <td>{{u.avg_tool}}</td>
+                                <td>{{u.support_big_amount_bot}}</td>
+                                 <td>{{u.support_trailing_stop_bot}}</td>
+                                <td>{{u.arb_twoway_tool}}</td>
+                                <td>{{u.atr_trailing_stop_bot_tool}}</td>
+                                 <td>{{u.two_way_sp_tool}}</td>
+                                <td>{{u.support_multi_box}}</td>
+                                <td>{{u.bs_sb_continuously_tool}}</td>
+                                
+                    
+                    </tr>
+                    {% endfor %}
+    
+    
+    </tbody>
+
+
+
+</table>
+</div>
+</div>
+</div>
+</section>
+{% endblock content %}
+
+{% endblock %}
+{% endif %}
+
+
+
+                      

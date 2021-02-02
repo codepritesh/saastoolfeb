@@ -1,0 +1,10 @@
+<div class="form-group col-md-{{ n_col }}">
+    <label for="{{ id }}" class="text-bold">{{ label }}</label>
+    <select class="custom-select exchange" id="{{ id }}">
+        {% if options %}
+            {% for item in options %}
+                <option value={{ item.value }}>{{ item.key }}</option>
+            {% endfor %}
+        {% endif %}
+    </select>
+</div>
