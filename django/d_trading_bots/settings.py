@@ -30,7 +30,7 @@ SECRET_KEY = '1212qeqweq'#'sms-e*pu7x2q3gq#@2^5-70nhhs8#08&!rnu7&tfgsqv3v3=0w'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1']
+ALLOWED_HOSTS = ['104.248.153.106']
 SITE_ID = 1
 
 # Application definition
@@ -62,7 +62,6 @@ INSTALLED_APPS = [
     'admin_dashboard',
     'AdminAllTrade',
     'TwoFA_user',
-
 
 ]
 
@@ -125,16 +124,16 @@ ASGI_APPLICATION = 'd_trading_bots.routing.application'
 WSGI_APPLICATION = 'd_trading_bots.wsgi.application'
 
 EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST ='smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'pmpmaharana97@gmail.com'
-EMAIL_HOST_PASSWORD = 'Radha@12342217'
+EMAIL_HOST_USER = 'saastoolss@gmail.com'
+EMAIL_HOST_PASSWORD = 'Radha@1234'
 #EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 EMAIL_FILE_PATH = os.path.join(CONTENT_DIR, 'tmp/emails')
 
-DEFAULT_FROM_EMAIL = 'pmpmaharana97@gmail.com'
+DEFAULT_FROM_EMAIL = 'saastoolss@gmail.com'
 
 
 
@@ -146,13 +145,11 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'trading_bots',
         'USER':  'postgres',
-        'PASSWORD': 'Radha@1234',
-        'HOST': 'localhost',
+        'PASSWORD': 'abc123321@123',
+        'HOST': '104.248.153.106',
         'PORT': '5432',
     }
 }
-
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
