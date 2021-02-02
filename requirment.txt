@@ -22,7 +22,6 @@ channels-redis==3.2.0
 chardet==3.0.4
 Click==7.0
 colorama==0.4.3
-command-not-found==0.3
 constantly==15.1.0
 cryptography==3.3.1
 cupshelpers==1.0
@@ -151,3 +150,4 @@ zope.event==4.5.0
 zope.interface==5.2.0
 apturl==0.5.2
 Brlapi==0.7.0
+command-not-found==0.3
